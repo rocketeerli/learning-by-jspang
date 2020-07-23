@@ -347,3 +347,111 @@ css 样式由选择符和声明组成，而声明又由属性和值组成。
 	为html中多个标签元素设置同一个样式时，可以使用分组选择符（，）。
 
 	例子：`h1,span{color:red;} /*h1、span标签同时设置字体颜色为红色*/`
+
+## CSS3 的继承，优先级和重要性
+
+### 继承
+
+CSS的某些样式是具有继承性的，那么什么是继承呢？
+
+继承是一种规则，它允许样式不仅应用于某个特定html标签元素，而且应用于其后代。
+
+但注意有一些css样式是不具有继承性的。如 `border:1px solid red;`
+
+### 优先级
+
+每个选择器是有优先级的。
+
+	1. 如果一个元素使用了多个选择器, 则会按照选择器的优先级来给定样式。
+
+	2. 选择器的优先级依次是: **内联样式 > id选择器 > 类选择器 > 标签选择器 > 通配符选择器**
+
+### 权值
+
+浏览器是根据权值来判断使用哪种 css 样式的，权值高的就使用哪种css样式。
+
+**标签的权值为1，类选择符的权值为10，ID选择符的权值最高为100**。
+
+例子：
+
+	p{color:red;} /*权值为1*/
+	p span{color:green;} /*权值为1+1=2*/
+	.warning{color:white;} /*权值为10*/
+	p span.warning{color:purple;} /*权值为1+1+10=12*/
+	#footer .note p{color:yellow;} /*权值为100+10+1=111*/
+
+注意：还有一个权值比较特殊--继承也有权值但很低，有的文献提出它只有0.1，所以可以理解为继承的权值最低。
+
+PS：并没有感受到权值。。。
+
+### 最高级层
+
+些特殊的情况需要为某些样式设置具有最高权值，这时候我们可以使用 `!important` 来解决。
+
+例子：`p{color:red!important;}`
+
+**注意：!important要写在分号的前面**
+
+样式优先级为：浏览器默认的样式 < 网页制作者样式 < 用户自己设置的样式，`!important` 优先级样式是个例外，权值高于用户自己设置的样式。
+
+## 第10章 CSS3 字体样式
+
+* font-family 设置字体
+
+	例子：`body{font-family:"宋体";}`
+
+* font-size 设置字体大小
+
+	例子：`body{font-size:12px;}`
+
+* font-weight 设置字体粗细
+
+	例子：`p span{font-weight:bold;}`
+
+* font-style 设置字体样式
+
+	例子：`p {font-style: italic;}`
+
+	解释：
+	
+	1. font-style可以设置字体样式，并且有种3设置方式。
+
+	2. 正常字体为normal,也是font-style的默认值。
+
+	3. italic为设置字体为斜体，用于字体本身就有倾斜的样式。
+
+	4. oblique为设置倾斜的字体，强制将字体倾斜。
+
+* color 设置字体颜色
+
+	color的值有3种设置方式：
+	
+	1. 英文命令颜色 `p{color:red;}`
+
+	2. RGB颜色 `p{color:rgb(133,45,200);}`
+
+	3. 十六进制颜色 `p{color:#00ffff;}`
+
+* font 样式的简写方式
+
+举例：
+
+	body{
+		font-style:italic;
+		font-weight:bold; 
+		font-size:12px; 
+		line-height:1.5em; 
+		font-family:"宋体",sans-serif;
+	}
+	
+以上代码可以缩写为一句：
+
+	body{
+		font:italic  bold  12px/1.5em  "宋体",sans-serif;
+	}
+	
+注意：
+
+1. 使用这一简写方式你至少要指定 `font-size` 和 `font-family` 属性，其他的属性(如 `font-weight`、`font-style`、`font-variant`、`line-height`)如未指定将自动使用默认值。
+
+2. 在缩写时 `font-size` 与 `line-height` 中间要加入“/”斜扛。
