@@ -138,3 +138,79 @@
 	window.close();   //关闭本窗口
 	<窗口对象>.close();   //关闭指定的窗口
 	
+## 第3章 你也有控制权（DOM操作）
+
+### 通过ID获取元素
+
+语法:
+
+	document.getElementById("id") 
+
+### innerHTML 属性
+
+`innerHTML` 属性用于获取或替换 `HTML` 元素的内容。
+
+语法:
+
+	Object.innerHTML
+	
+例子：
+
+	<script type="text/javascript">
+		var mychar=document.getElementById("con");
+		document.write("原标题:"+mychar.innerHTML+"<br>"); //输出原h2标签内容
+		mychar.innerHTML = "Hello world!"
+		document.write("修改后的标题:"+mychar.innerHTML); //输出修改后h2标签内容
+	</script>
+
+### 改变 HTML 样式
+
+语法:
+
+	Object.style.property=new style;
+	
+例子：
+
+	<script type="text/javascript">
+		var mychar= document.getElementById("con");
+		mychar.style.color = "red";
+		mychar.style.backgroundColor = "#CCC";
+		mychar.style.width = "300px";
+	</script>
+
+### 显示和隐藏（display属性）
+
+语法：
+
+	Object.style.display = value
+
+例子：
+
+	<script type="text/javascript"> 
+        function hidetext()  
+		{  
+		var mychar = document.getElementById("con");
+        mychar.style.display = "none";
+		}  
+		function showtext()  
+		{  
+		var mychar = document.getElementById("con");
+        mychar.style.display = "block";
+		}
+    </script> 
+
+### 控制类名（className 属性）
+
+`className` 属性设置或返回元素的 `class` 属性。
+
+语法：
+
+	object.className = classname
+
+作用:
+
+1. 获取元素的 `class` 属性
+
+2. 为网页内的某个元素指定一个 `css` 样式来更改该元素的外观
+
+
