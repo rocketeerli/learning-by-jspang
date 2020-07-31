@@ -32,7 +32,7 @@ live-server 插件实现了:
 	v-if：判断是否加载，可以减轻服务器的压力，在需要时加载。
 	v-show：调整 css dispaly 属性，可以使客户端操作更加流畅。
 
-## v-for
+## 03. v-for
 
 模板写法：
 
@@ -49,3 +49,17 @@ live-server 插件实现了:
 `computed` 是计算属性，主要作用是把数据存储到内存中，减少不必要的请求。
 
 **注意：`vue` 低版本中 `data` 里面的属性名和 `computed` 里面的可以一样，但是高版本，是不允许相同名称。**
+
+## 04. v-text & v-html
+
+我们已经使用的 `{{xxx}}`,这种情况是有弊端的。就是当我们网速很慢或者 `javascript` 出错时，会暴露我们的 `{{xxx}}`。
+
+这时，我们可以使用 `v-text`:
+
+	<span v-text="message"></span>
+
+如果在 `javascript` 中写有 `html` 标签，用 `v-text` 是输出不出来的，这时候我们就需要用 `v-html` 标签了：
+
+	<span v-html="msgHtml"></span>
+
+需要注意的是：**在生产环境中动态渲染HTML是非常危险的，因为容易导致XSS攻击。**
