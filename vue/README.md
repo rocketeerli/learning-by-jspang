@@ -125,3 +125,19 @@ live-server 插件实现了:
 
 `v-bind` 是处理 `HTML` 中的标签属性的。
 
+基础用法：
+
+	<img src="http://blogimages.jspang.com/blogtouxiang1.jpg"/>
+    <img v-bind:src="img_src" width="200px"/>
+
+简写：
+
+	<!-- 完整语法 -->
+	<a v-bind:href="url"></a>
+	<!-- 缩写 -->
+	<a :href="url"></a>
+
+通常用来**绑定 CSS 样式**。
+
+## 08. 
+
