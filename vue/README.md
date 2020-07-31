@@ -78,4 +78,50 @@ live-server 插件实现了:
 
 还可以绑定其它事件，比如键盘回车事件 `v-on:keyup.enter`
 
+## 06. v-model
+
+`v-model` 指令，绑定数据源。就是把数据绑定在特定的表单元素上，可以很容易的实现双向数据绑定。
+
+基本用法：
+
+	<p>{{message}}</p>
+    <p><input type="text" v-model='message'></p>
+
+### 修饰符
+
+* `.lazy`：取代 `imput` 监听 `change` 事件。
+
+* `.number`：输入字符串转为数字。
+
+* `.trim`：输入去掉首尾空格。
+
+### 绑定一个值、数组和单选框
+
+	<h3>多选框绑定一个值</h3>
+	<input type="checkbox" id="isTrue" v-model="is_true">
+    <label for="isTrue">{{is_true}}</label>
+    <hr>
+    <h3>多选框绑定一个数组</h3>
+    <p>
+        <input type="checkbox" id="rocketeerli" value="rocketeerli" v-model='web_names'>
+        <label for="rocketeerli">rocketeerli</label>
+        <input type="checkbox" id="fightingstone" value="fightingstone" v-model='web_names'>
+        <label for="fightingstone">fightingstone</label>
+        <input type="checkbox" id="tututu" value="tututu" v-model='web_names'>
+        <label for="tututu">tututu</label>
+        <p>{{web_names}}</p>
+    </p>
+    <hr>
+    <h3>单选框绑定</h3>
+    <p>
+        <input type="radio" id="one" value="male" v-model='sex'>
+        <label for="one">male</label>
+        <input type="radio" id="two" value="female" v-model='sex'>
+        <label for="two">female</label>
+        <p>the sex you have chose is {{sex}}</p>
+    </p>
+
+## 07. v-bind
+
+`v-bind` 是处理 `HTML` 中的标签属性的。
 
