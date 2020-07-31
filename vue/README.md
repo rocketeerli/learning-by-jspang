@@ -63,3 +63,19 @@ live-server 插件实现了:
 	<span v-html="msgHtml"></span>
 
 需要注意的是：**在生产环境中动态渲染HTML是非常危险的，因为容易导致XSS攻击。**
+
+## 05. v-on
+
+`v-on` 就是监听事件，可以用 `v-on` 指令监听 `DOM` 事件来触发一些 `javascript` 代码。
+
+举例：
+
+	<button v-on:click='add_score'>加分</button>
+
+`v-on` 还有一种简单的写法，就是用`@`代替：
+
+	<button @click='sub_score'>减分</button>
+
+还可以绑定其它事件，比如键盘回车事件 `v-on:keyup.enter`
+
+
