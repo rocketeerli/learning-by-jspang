@@ -255,3 +255,63 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
 	destroyed:function(){
 	    console.log('10-destroyed 销毁之后')
 	}
+
+## 13. Template 制作模版
+
+### 选项模板
+
+直接在构造器里的 `template` 选项后边编写，这种写法比较直观，但是不适合模板 `html` 代码太多的情况。
+
+例子：
+
+	var app=new Vue({
+		el:'#app',
+		data:{
+			message:'hello Vue!'
+		},
+		template:`
+			<h1 style="color:red">我是选项模板</h1>
+		`
+	})
+	
+这里需要注意的是模板的标识不是单引号和双引号，而是 `Tab` 上面的键。
+
+### 写在 template 标签里的模板
+
+这种写法更像是在写 `HTML` 代码，就算不会写 `Vue` 的人，也可以制作页面。
+
+例子：
+
+    <template id="demo2">
+             <h2 style="color:red">我是template标签模板</h2>
+    </template>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!'
+            },
+            template:'#demo2'
+        })
+    </script>
+
+### 写在 script 标签里的模板
+
+这种写模板的方法，可以让模板文件从外部引入。
+
+例子：
+
+	<script type="x-template" id="demo3">
+        <h2 style="color:red">我是script标签模板</h2>
+    </script>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!'
+            },
+            template:'#demo3'
+        })
+    </script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template 制作模版</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Template 制作模版</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+    <!-- 第二种，template 标签模板 -->
+    <template id="dd2">
+        <h2 style="color: blue">template 标签模板</h2>
+    </template>
+    <!-- 第三种 script 标签模板 -->
+    <script type="x-template" id="dd3">
+        <h2 style="color: orange">script 标签模板</h2>
+    </script>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"Hello rocketeerli"
+            },
+            // 第一种 选项模板
+            // template:`
+            //     <h2 style="color: yellow">选项模板</h2>
+            // `
+            // 第二种 template 标签模板
+            // template:"#dd2"
+            // 第三种 script 标签模板
+            template:"#dd3"
+        })
+    </script>
+</body>
+</html>
