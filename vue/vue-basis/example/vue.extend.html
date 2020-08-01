@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.extend 构造器的延伸</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Vue.extend 构造器的延伸</h1>
+    <hr>
+    标签的绑定方式：
+    <author></author>
+    id的绑定方式：
+    <div id='auth'></div>
+
+
+    <script type="text/javascript">
+        var author_extend = Vue.extend({
+            template:"<p><a :href='author_url'>{{author_name}}</a></p>",
+            data:function(){
+                return {
+                    author_name:'rocketeerli',
+                    author_url:'https://blog.csdn.net/rocketeerLi'
+                }
+            }
+        });
+        new author_extend().$mount("author");
+        new author_extend().$mount("#auth");
+    </script>
+</body>
+</html>

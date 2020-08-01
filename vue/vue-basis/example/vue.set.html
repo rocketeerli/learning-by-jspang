@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.set 全局操作</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Vue.set 全局操作</h1>
+    <hr>
+    <div id="app">
+        {{count}}
+        <ul>
+            <li v-for="item in arr">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+    <p>
+        <button onclick="add()">ADD</button>
+    </p>
+
+    <script type="text/javascript">
+        function add(){
+            // 第一种 Vue.set
+            // Vue.set(out_data, 'count', 3);
+            // 第二种 Vue 实例
+            // app.count++;
+            // 第三种 外部对象
+            // out_data.count++;
+            // app.arr[1] = 'add';
+            Vue.set(app.arr, 1, 'change');
+        }
+        var out_data = {
+            count:1,
+            // goods:'car'
+            arr:['rocketeerli', 'fightingstone', 'tututu']
+        };
+        var app = new Vue({
+            el: "#app",
+            data:out_data
+        });
+    </script>
+</body>
+</html>
