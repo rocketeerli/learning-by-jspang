@@ -37,7 +37,7 @@ live-server 插件实现了:
 模板写法：
 
 	<li v-for="item in items">
-        {{item}}
+	    {{item}}
 	</li>
 
 需要哪个 `html` 标签循环，`v-for` 就写在哪个上边。
@@ -85,7 +85,7 @@ live-server 插件实现了:
 基本用法：
 
 	<p>{{message}}</p>
-    <p><input type="text" v-model='message'></p>
+	<p><input type="text" v-model='message'></p>
 
 ### 修饰符
 
@@ -99,27 +99,27 @@ live-server 插件实现了:
 
 	<h3>多选框绑定一个值</h3>
 	<input type="checkbox" id="isTrue" v-model="is_true">
-    <label for="isTrue">{{is_true}}</label>
-    <hr>
-    <h3>多选框绑定一个数组</h3>
-    <p>
-        <input type="checkbox" id="rocketeerli" value="rocketeerli" v-model='web_names'>
-        <label for="rocketeerli">rocketeerli</label>
-        <input type="checkbox" id="fightingstone" value="fightingstone" v-model='web_names'>
-        <label for="fightingstone">fightingstone</label>
-        <input type="checkbox" id="tututu" value="tututu" v-model='web_names'>
-        <label for="tututu">tututu</label>
-        <p>{{web_names}}</p>
-    </p>
-    <hr>
-    <h3>单选框绑定</h3>
-    <p>
-        <input type="radio" id="one" value="male" v-model='sex'>
-        <label for="one">male</label>
-        <input type="radio" id="two" value="female" v-model='sex'>
-        <label for="two">female</label>
-        <p>the sex you have chose is {{sex}}</p>
-    </p>
+	<label for="isTrue">{{is_true}}</label>
+	<hr>
+	<h3>多选框绑定一个数组</h3>
+	<p>
+	    <input type="checkbox" id="rocketeerli" value="rocketeerli" v-model='web_names'>
+	    <label for="rocketeerli">rocketeerli</label>
+	    <input type="checkbox" id="fightingstone" value="fightingstone" v-model='web_names'>
+	    <label for="fightingstone">fightingstone</label>
+	    <input type="checkbox" id="tututu" value="tututu" v-model='web_names'>
+	    <label for="tututu">tututu</label>
+	    <p>{{web_names}}</p>
+	</p>
+	<hr>
+	<h3>单选框绑定</h3>
+	<p>
+	    <input type="radio" id="one" value="male" v-model='sex'>
+	    <label for="one">male</label>
+	    <input type="radio" id="two" value="female" v-model='sex'>
+	    <label for="two">female</label>
+	    <p>the sex you have chose is {{sex}}</p>
+	</p>
 
 ## 07. v-bind
 
@@ -128,7 +128,7 @@ live-server 插件实现了:
 基础用法：
 
 	<img src="http://blogimages.jspang.com/blogtouxiang1.jpg"/>
-    <img v-bind:src="img_src" width="200px"/>
+	<img v-bind:src="img_src" width="200px"/>
 
 简写：
 
@@ -198,17 +198,17 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
 ### 在外部改变数据的三种方法
 
 	1. 用Vue.set改变
-
+	
 	function add(){
 		Vue.set(outData,'count',4);
 	}
-
+	
 	2. 用Vue对象的方法添加
-
+	
 	app.count++;
-
+	
 	3. 直接操作外部数据
-
+	
 	outData.count++;
 
 ### Vue.set 存在的意义
@@ -218,3 +218,40 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
 * 当你利用索引直接设置一个项时，`vue` 不会为我们自动更新。
 
 * 当你修改数组的长度时，`vue` 不会为我们自动更新。
+
+## 12. Vue的生命周期（钩子函数）
+
+`Vue` 一共有10个生命周期函数，我们可以利用这些函数在 `vue` 的每个阶段都进行操作数据或者改变内容。
+
+例子：
+
+	beforeCreate:function(){
+	    console.log('1-beforeCreate 初始化之前');
+	},
+	created:function(){
+	    console.log('2-created 创建完成');
+	},
+	beforeMount:function(){
+	    console.log('3-beforeMount 挂载之前');
+	},
+	mounted:function(){
+	    console.log('4-mounted 被挂载之后');
+	},
+	beforeUpdate:function(){
+	    console.log('5-beforeUpdate 数据更新前');
+	},
+	updated:function(){
+	    console.log('6-updated 被更新后');
+	},
+	activated:function(){
+	    console.log('7-activated');
+	},
+	deactivated:function(){
+	    console.log('8-deactivated');
+	},
+	beforeDestroy:function(){
+	    console.log('9-beforeDestroy 销毁之前');
+	},
+	destroyed:function(){
+	    console.log('10-destroyed 销毁之后')
+	}
