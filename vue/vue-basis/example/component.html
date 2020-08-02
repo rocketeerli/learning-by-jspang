@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component 初识组件</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Component 初识组件</h1>
+    <hr>
+    <div id="app">
+        <rocketeerli></rocketeerli>
+        <tututu></tututu>
+    </div>
+
+    <script type="text/javascript">
+        Vue.component("rocketeerli", {
+            template:`<div style="color: blue">全局 rocketeerli 组件</div>`
+        })
+        var app = new Vue({
+            el:"#app",
+            data:{},
+            components:{
+                "tututu":{
+                    template:`<div style="color: yellow">局部 tututu 组件</div>`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

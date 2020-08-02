@@ -315,3 +315,59 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
             template:'#demo3'
         })
     </script>
+
+## 14. Component 初识组件
+
+组件就是制作自定义的标签，这些标签在HTML中是没有的。
+
+### 全局化注册组件
+
+全局化就是在构造器的外部用 `Vue.component` 来注册。
+
+例子：
+
+    <div id="app">
+        <rocketeerli></rocketeerli>
+    </div>
+    <script type="text/javascript">
+        Vue.component("rocketeerli", {
+            template:`<div style="color: blue">全局 rocketeerli 组件</div>`
+        })
+        var app = new Vue({
+            el:"#app",
+            data:{}
+        })
+    </script>
+
+需要注意的是：**它必须放到构造器的作用域里**。
+
+### 局部注册组件局部
+
+局部注册组件局部注册组件和全局注册组件是向对应的，局部注册的组件只能在组件注册的作用域里进行使用，其他作用域使用无效。
+
+例子：
+
+    <div id="app">
+        <tututu></tututu>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            data:{},
+            components:{
+                "tututu":{
+                    template:`<div style="color: yellow">局部 tututu 组件</div>`
+                }
+            }
+        })
+    </script>
+
+可以看出局部注册其实就是写在构造器里，但是你需要注意的是，构造器里的 `components` 是加 `s` 的，而全局注册是不加 `s` 的。
+
+### 组件和指令的区别
+
+**组件注册的是一个标签，而指令注册的是已有标签里的一个属性**。
+
+在实际开发中我们还是用组件比较多，指令用的比较少。因为指令看起来封装的没那么好。
+
+
