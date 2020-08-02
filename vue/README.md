@@ -642,3 +642,58 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
 例子：
 	
 	<button onclick="app.add(3)">外部ADD</button>
+
+## 21. Watch 选项 监控数据
+
+数据变化的监控经常使用。
+
+既可以在内部定义，也可以在外部使用实例属性：
+
+    <div id="app">
+        <p>今日温度：{{temperature}} 摄氏度</p>
+        <p>穿衣建议：{{suggest}}</p>
+        <p>
+            <button @click="add_temp">升高温度</button>
+            <button @click="sub_temp">降低温度</button>
+        </p>
+    </div>
+    <script type="text/javascript">
+        var suggest_list = ["棉衣羽绒服", '夹克长裙', "T 恤短袖"];
+        var app = new Vue({
+            el:"#app",
+            data:{
+                temperature: 16,
+                suggest: suggest_list[1]
+            },
+            methods:{
+                "add_temp":function(){
+                    this.temperature += 6;
+                },
+                "sub_temp":function(){
+                    this.temperature -= 3;
+                }
+            },
+            // 内部选项
+            // watch:{
+            //     temperature:function(new_val, old_val){
+            //         if(new_val >= 26) {
+            //             this.suggest = suggest_list[2];
+            //         } else if (new_val > 0) {
+            //             this.suggest = suggest_list[1];
+            //         } else {
+            //             this.suggest = suggest_list[0];
+            //         }
+            //     }
+            // }
+        });
+        // 外部使用实例属性
+        app.$watch('temperature', function(new_val, old_val){
+                    if(new_val >= 26) {
+                        this.suggest = suggest_list[2];
+                    } else if (new_val > 0) {
+                        this.suggest = suggest_list[1];
+                    } else {
+                        this.suggest = suggest_list[0];
+                    }
+                });
+    </script>
