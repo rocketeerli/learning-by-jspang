@@ -508,3 +508,137 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
             }
         });
     </script>
+
+## 18. propsData Option 全局扩展的数据传递
+
+`propsData` 不是和属性有关，他用在全局扩展时进行传递数据。
+
+实际我们并比推荐用全局扩展的方式作自定义标签，我们学了组件，完全可以使用组件来做。
+
+例子：
+
+    <header></header>
+    <script type="text/javascript">
+        var header_a = Vue.extend({
+            template:`
+                <p>{{message}} - {{a}}</p>
+            `,
+            data:function(){
+                return {
+                    message: 'Hello, I am header!'
+                }
+            },
+            props:['a']
+        });
+        new header_a({propsData:{a:1}}).$mount("header");
+    </script>
+
+## 19. computed Option 计算选项
+
+`computed` 的作用主要是对原数据进行改造输出。改造输出：包括格式的编辑，大小写转换，顺序重排，添加符号……。
+
+例子：
+
+	<div id="app">
+        <p>{{new_price}}</p>
+        <hr>
+        <ul>
+            <li v-for="news in revers_news">
+                {{news.title}}——{{news.date}}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var new_list = [
+            {title: '香港特区政府欢迎中央政府支援队协助特区抗疫工作', date:'2020/08/01'},
+            {title: '赵一德任陕西代省长，成全国最年轻省级政府“一把手”', date:'2020/08/03'},
+            {title: '法国主流媒体传播涉新疆假新闻 中国驻法国大使馆:纯属谎言', date:'2020/08/04'},
+            {title: '空军原司令员王海逝世 抗美援朝曾警告美军:再来还打下来', date:'2020/08/02'},
+        ]
+        var app = new Vue({
+            el:"#app",
+            data:{
+                price: 100,
+                new_list: new_list
+            },
+            computed:{
+                new_price:function(){
+                    return '￥' + this.price + '元';
+                },
+                revers_news: function(){
+                    return this.new_list.reverse();
+                }
+            }
+        })
+    </script>
+
+## 20. Methods Option 方法选项
+
+### methods 中参数的传递
+
+使用方法和正常的 `javascript` 传递参数的方法一样，例子：
+
+	<div id="app">
+        <p>{{number}}</p>
+        <p><button @click="add(6)">ADD</button></p>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            data:{
+                number: 1
+            },
+            methods:{
+                add:function(num){
+                    if(num!=''){
+                        this.number+=num;
+                    }else{
+                        this.number++;
+                    }
+                }
+            }
+        })
+    </script>
+
+### methods 中的 $event 参数
+
+传递的 `$event` 参数都是关于点击鼠标的一些事件和属性。
+
+例子：
+
+	<div id="app">
+        <p>{{number}}</p>
+        <p><button @click="add(6, $event)">ADD</button></p>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            data:{
+                number: 1
+            },
+            methods:{
+                add:function(num, event){
+                    if(num!=''){
+                        this.number+=num;
+                    }else{
+                        this.number++;
+                    }
+                    console.log(event);
+                }
+            }
+        })
+    </script>
+
+### native 给组件绑定构造器里的原生事件
+
+如何让组件调用构造器里的方法，而不是组件里的方法。就需要用到我们的 `.native` 修饰器了。
+
+**给`vue`组件绑定事件时候，必须加上`native`，不然不会生效**。
+
+### 作用域外部调用构造器里的方法
+
+这种不经常使用，如果你出现了这种情况，说明你的代码组织不够好。
+
+例子：
+	
+	<button onclick="app.add(3)">外部ADD</button>

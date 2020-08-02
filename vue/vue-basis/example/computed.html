@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>computed Option 计算选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>computed Option 计算选项</h1>
+    <hr>
+    <div id="app">
+        <p>{{new_price}}</p>
+        <hr>
+        <ul>
+            <li v-for="news in revers_news">
+                {{news.title}}——{{news.date}}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var new_list = [
+            {title: '香港特区政府欢迎中央政府支援队协助特区抗疫工作', date:'2020/08/01'},
+            {title: '赵一德任陕西代省长，成全国最年轻省级政府“一把手”', date:'2020/08/03'},
+            {title: '法国主流媒体传播涉新疆假新闻 中国驻法国大使馆:纯属谎言', date:'2020/08/04'},
+            {title: '空军原司令员王海逝世 抗美援朝曾警告美军:再来还打下来', date:'2020/08/02'},
+        ]
+        var app = new Vue({
+            el:"#app",
+            data:{
+                price: 100,
+                new_list: new_list
+            },
+            computed:{
+                new_price:function(){
+                    return '￥' + this.price + '元';
+                },
+                revers_news: function(){
+                    return this.new_list.reverse();
+                }
+            }
+        })
+    </script>
+</body>
+</html>
