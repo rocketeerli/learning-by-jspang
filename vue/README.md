@@ -370,4 +370,141 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
 
 在实际开发中我们还是用组件比较多，指令用的比较少。因为指令看起来封装的没那么好。
 
+## 15. Component 组件 props 属性设置
 
+`props` 选项就是设置和获取标签上的属性值的。
+
+### 定义属性并获取属性值
+
+定义属性我们需要用 `props` 选项，加上数组形式的属性名称，例如：`props:[‘here’]`。
+
+在组件的模板里读出属性值只需要用插值的形式，例如`{{ here }}`。
+
+### 属性中带’-‘的处理方式
+
+我们在写属性时经常会加入 `-` 来进行分词，比如：`<fightingstone from-here="China"></fightingstone>`。
+
+这时我们在 `props` 里如果写成 `props:[‘form-here’]` 是错误的，我们必须用小驼峰式写法 `props:[‘formHere’]`。
+
+`javascript` 代码：
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            data:{},
+            components:{
+                "fightingstone":{
+                    template:`<div style="color: green"> fightingstone is from {{fromHere}}</div>`,
+                    props:['fromHere']
+                }
+            }
+        });
+    </script>
+
+### 在构造器里向组件中传值
+
+把构造器中 `data` 的值传递给组件，我们只要进行绑定就可以了。
+
+例子：
+
+	<div id="app">
+        <fightingstone :from-here="message"></fightingstone>
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message: "Harbin China"
+            },
+            components:{
+                "fightingstone":{
+                    template:`<div style="color: green"> fightingstone is from {{fromHere}}</div>`,
+                    props:['fromHere']
+                }
+            }
+        });
+    </script>
+
+## 16. Component 父子组件关系
+
+我们可以在外部引用组件，先声明一个外部组件，再在 `Vue` 实例中进行引用。
+
+父子组件关系：我们可以在一个外部组件中引用另一个外部组件，这两个组件形成父子关系。
+
+注意：**子组件需要在父组件中进行注册**。
+
+例子：
+
+	<div id="app">
+        <rocketeerli></rocketeerli>
+    </div>
+
+    <script type="text/javascript">
+        var addr = {
+            template:`<div style="color: yellow">rocketeerli is from China.</div>`
+        }
+        var rocketeerli_component = {
+            template:`
+            <div>
+                <p style="color: blue">rocketeerli 局部组件</p>
+                <addr></addr>
+            </div>
+            `,
+            components:{
+                "addr": addr
+            }
+        };
+        var app = new Vue({
+            el: "#app",
+            data: {},
+            components:{
+                "rocketeerli":rocketeerli_component
+            }
+        })
+    </script>
+
+## 17. Component 标签
+
+标签是 `Vue` 框架自定义的标签，它的用途就是可以动态绑定我们的组件，根据数据的不同更换不同的组件。
+
+例子：
+
+    <div id="app">
+        <component :is="which_component"></component>
+        <p><button @click="change_component">Change Component</button></p>
+    </div>
+
+    <script type="text/javascript">
+        var componentA = {
+            template: `<div style="color: red">I'm the componentA</div>`
+        };
+        var componentB = {
+            template: `<div style="color: blue">I'm the componentB</div>`
+        };
+        var componentC = {
+            template: `<div style="color: yellow">I'm the componentC</div>`
+        };
+        var app = new Vue({
+            el:"#app",
+            data:{
+                which_component: 'componentB'
+            },
+            components:{
+                "componentA": componentA,
+                "componentB": componentB,
+                "componentC": componentC
+            },
+            methods:{
+                change_component: function(){
+                    if(this.which_component == "componentA"){
+                        this.which_component = 'componentB';
+                    } else if (this.which_component == "componentB"){
+                        this.which_component = 'componentC';
+                    } else {
+                        this.which_component = 'componentA';
+                    }
+                }
+            }
+        });
+    </script>

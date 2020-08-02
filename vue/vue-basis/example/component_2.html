@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component 组件 props 属性设置</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Component 组件 props 属性设置</h1>
+    <hr>
+    <div id="app">
+        <fightingstone :from-here="message"></fightingstone>
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message: "Harbin China"
+            },
+            components:{
+                "fightingstone":{
+                    template:`<div style="color: green"> fightingstone is from {{fromHere}}</div>`,
+                    props:['fromHere']
+                }
+            }
+        });
+    </script>
+</body>
+</html>
