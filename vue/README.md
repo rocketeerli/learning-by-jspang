@@ -739,3 +739,59 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
 我们也可以定义全局的混入，这样在需要这段代码的地方直接引入 `js`，就可以拥有这个功能了。
 
 注意：**全局混入的执行顺序要前于混入和构造器里的方法。**。
+
+## 23. Extends Option 扩展选项
+
+通过外部增加对象的形式，对构造器进行扩展。它和我们上节课的混入非常的类似。
+
+例子：
+
+    <div id="app">
+        <p>{{number}}</p>
+        <p><button @click="add">ADD</button></p>
+    </div>
+    <script type="text/javascript">
+        var extends_obj = {
+            updated:function(){
+                console.log('扩展的 updated');
+            },
+            add:function(){
+                console.log('扩展的方法');
+                this.number++;
+            }
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                number:1
+            },
+            methods:{
+                add:function(){
+                    console.log('原生的方法');
+                    this.number++;
+                }
+            },
+            updated:function(){
+                console.log("原生的 updated");
+            },
+            extends:extends_obj
+        })
+    </script>
+
+注意：**如果扩展的方法与原生的方法重名，扩展的方法是不被执行的**。
+
+`mixins` 与 `Extends`：
+
+1. 同扩展一样，混入如果扩展的方法重名，也是不会被执行的。
+
+2. 扩展只能放一个对象，混入是放一个数组。
+
+### delimiters 选项
+
+`delimiters` 的作用是改变我们插值的符号。`Vue` 默认的插值是双大括号 `{{}}`。但有时我们会有需求更改这个插值的形式。
+
+例子：
+
+	delimiters:['${', '}']
+
+现在我们的插值形式就变成了 `${}`。
