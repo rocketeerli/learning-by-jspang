@@ -697,3 +697,45 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
                     }
                 });
     </script>
+
+## 22. Mixins 混入选项操作
+
+### Mixins的基本用法
+
+例子（监测数值变化）：
+
+    <div id="app">
+        <p>{{number}}</p>
+        <p><button @click="add">ADD</button></p>
+    </div>
+    <script type="text/javascript">
+        var add_console = {
+            updated:function(){
+                console.log('数据发送变化，变成了：' + this.number);
+            }
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                number: 1
+            },
+            methods:{
+                add:function(){
+                    this.number++;
+                }
+            },
+            mixins:[add_console]
+        });
+    </script>
+
+### mixins 的调用顺序
+
+从执行的先后顺序来说，都是混入的先执行，然后构造器里的再执行。
+
+需要注意的是，这并不是方法的覆盖，而是被执行了两边。
+
+### 全局 API 混入方式
+
+我们也可以定义全局的混入，这样在需要这段代码的地方直接引入 `js`，就可以拥有这个功能了。
+
+注意：**全局混入的执行顺序要前于混入和构造器里的方法。**。
