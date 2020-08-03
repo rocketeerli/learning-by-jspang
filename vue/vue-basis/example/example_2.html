@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实例方法</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>实例方法</h1>
+    <hr>
+    <div id="app">
+        <p>挂载前的内容......</p>
+    </div>
+    <p><button onclick="destroy()">Destroy</button></p>
+    <p><button onclick="reload()">刷新</button></p>
+    <p><button onclick="tick()">更新完调用</button></p>
+    <script>
+        var rocketeerli = Vue.extend({
+            template: `<div>I am {{my_name}}</div>`,
+            data:function(){
+                return{
+                    my_name: 'rocketeerli'
+                };
+            },
+            mounted:function(){
+                console.log("mounted 被创建!!!");
+            },
+            destroyed:function(){
+                console.log("destroyed 被销毁!!!");
+            },
+            updated:function(){
+                console.log("updated 更新之后!!!");
+            }
+        });
+        var vm = new rocketeerli().$mount('#app');
+        function destroy(){
+            vm.$destroy();
+        }
+        function reload(){
+            vm.$forceUpdate();
+        }
+        function tick(){
+            vm.my_name = "fightingstone";
+            vm.$nextTick(function(){
+                console.log("message 更新完，被调用");
+            })
+        }
+    </script>
+</body>
+</html>

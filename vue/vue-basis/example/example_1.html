@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实例入门-实例属性</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery-3.5.1.js"></script>
+</head>
+<body>
+    <h1>实例入门-实例属性</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message: "Welcome rocketeerli"
+            },
+            methods:{
+                test:function(){
+                    console.log('test inner function');
+                }
+            },
+            mounted:function(){
+                $("#app").click(function(){
+                    $(this).html('I am Jquery~');
+                });
+            }
+        });
+        app.test();
+    </script>
+</body>
+</html>

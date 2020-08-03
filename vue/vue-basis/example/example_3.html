@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实例事件</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>实例事件</h1>
+    <hr>
+    <div id="app">
+        <p>数字：{{number}}</p>
+        <p><button @click="add">ADD</button></p>
+    </div>
+    <p><button onclick="sub()">外部的 SUB</button></p>
+    <p><button onclick="sub_once()">只减一次的 SUB</button></p>
+    <p><button onclick="off()">OFF</button></p>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                number: 1
+            },
+            methods:{
+                add:function(){
+                    this.number++;
+                }
+            }
+        })
+        app.$on("sub", function(){
+            console.log("执行了 sub 方法")
+            this.number--;
+        });
+        function sub(){
+            app.$emit("sub");
+        }
+        app.$once('sub_once', function(){
+            console.log("只执行一次的方法");
+            this.number--;
+        })
+        function sub_once(){
+            app.$emit('sub_once');
+        }
+        function off(){
+            console.log("关闭 sub");
+            app.$off('sub');
+        }
+    </script>
+</body>
+</html>

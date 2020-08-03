@@ -795,3 +795,149 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
 	delimiters:['${', '}']
 
 现在我们的插值形式就变成了 `${}`。
+
+## 24. 实例入门-实例属性
+
+### `Vue` 和 `Jquery.js` 一起使用
+
+例子：
+
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>实例入门-实例属性</title>
+		<script src="../assets/js/vue.js"></script>
+		<script src="../assets/js/jquery-3.5.1.js"></script>
+	</head>
+	<body>
+		<h1>实例入门-实例属性</h1>
+		<hr>
+		<div id="app">
+			{{message}}
+		</div>
+		<script>
+			var app = new Vue({
+				el:"#app",
+				data:{
+					message: "Welcome rocketeerli"
+				},
+				mounted:function(){
+					$("#app").click(function(){
+						$(this).html('I am Jquery~');
+					});
+				}
+			});
+		</script>
+	</body>
+	</html>
+
+### 实例调用自定义方法
+
+例子：
+
+	app.test();
+	
+## 25. 实例方法
+
+### `$mount` 方法
+
+`$mount` 方法是用来挂载扩展的。
+
+例子：
+
+	<div id="app">
+        不显示~
+    </div>
+    <script>
+        var rocketeerli = Vue.extend({
+            template: `<div>I am {{my_name}}</div>`,
+            data:function(){
+                return{
+                    my_name: 'rocketeerli'
+                };
+            },
+            mounted:function(){
+                console.log("mounted 被创建!!!");
+            }
+        });
+        var vm = new rocketeerli().$mount('#app');
+    </script>
+
+### `$destroy()` 卸载方法
+
+用 `$destroy()` 进行卸载。
+
+例子：
+
+	var vm = new rocketeerli().$mount('#app');
+    function destroy(){
+        vm.$destroy();
+    }
+
+### `$forceUpdate()` 更新方法
+
+例子：
+
+	vm.$forceUpdate()
+
+### `$nextTick()` 数据修改方法
+
+当 `Vue` 构造器里的 `data` 值被修改完成后会调用这个方法，也相当于一个钩子函数吧，和构造器里的 `updated` 生命周期很像。
+
+## 26. 实例事件
+
+实例事件就是在构造器外部写一个调用构造器内部的方法。这样写的好处是可以通过这种写法在构造器外部调用构造器内部的数据。
+
+### `$on` 在构造器外部添加事件
+
+`$on` 接收两个参数，第一个参数是调用时的事件名称，第二个参数是一个匿名方法。
+
+如果按钮在作用域外部，可以利用 `$emit` 来执行。
+
+例子：
+
+    <div id="app">
+        <p>数字：{{number}}</p>
+        <p><button @click="add">ADD</button></p>
+    </div>
+    <p><button onclick="sub()">SUB</button></p>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                number: 1
+            },
+            methods:{
+                add:function(){
+                    this.number++;
+                }
+            }
+        })
+        app.$on("sub", function(){
+            console.log("执行了 sub 方法")
+            this.number--;
+        })
+        function sub(){
+            app.$emit("sub");
+        }
+    </script>
+
+### `$once` 执行一次的事件
+
+方法只执行一次。
+
+例子：
+
+	app.$once('sub_once', function(){
+        console.log("只执行一次的方法");
+        this.number--;
+    })
+    function sub_once(){
+        app.$emit('sub_once');
+    }
+
+### `$off` 关闭事件
+
+
