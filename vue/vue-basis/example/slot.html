@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内置组件 -slot讲解</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>内置组件 -slot讲解</h1>
+    <hr>
+    <div id="app">
+        <rocketeerli>
+            <span slot="blog_url">{{rocketeerli_data.blog_url}}</span>
+            <span slot="net_name">{{rocketeerli_data.net_name}}</span>
+            <span slot="skill">{{rocketeerli_data.skill}}</span>
+        </rocketeerli>
+    </div>
+
+    <template id="tep">
+        <div>
+            <p>博客地址：<slot name="blog_url"></slot></p>
+            <p>网名：<slot name="net_name"></slot></p>
+            <p>技术栈：<slot name="skill"></slot></p>
+        </div>
+    </template>
+
+    <script>
+        var rocketeerli = {
+            template: "#tep"
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                rocketeerli_data:{
+                    blog_url: "https://blog.csdn.net/rocketeerLi",
+                    net_name: "rocketeerli",
+                    skill: "none"
+                }
+            },
+            components:{
+                "rocketeerli":rocketeerli
+            }
+        });
+    </script>
+</body>
+</html>
