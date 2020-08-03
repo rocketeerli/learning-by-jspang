@@ -1,3 +1,8 @@
+# 开始
+
+这是 Vue2.0 的基础教程前四季的视频笔记，在此记录一下，以免遗忘太快~
+
+# 第一季 —— 内部指令
 
 ## 01. Hello World
 
@@ -156,6 +161,8 @@ live-server 插件实现了:
 ### v-once
 
 在第一次 `DOM` 时进行渲染，渲染完成后视为静态内容，跳出以后的渲染过程。
+
+# 第二季 —— 全局 API
 
 ## 09. Vue.directive
 
@@ -380,7 +387,7 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
 
 在组件的模板里读出属性值只需要用插值的形式，例如`{{ here }}`。
 
-### 属性中带’-‘的处理方式
+### 属性中带`-`的处理方式
 
 我们在写属性时经常会加入 `-` 来进行分词，比如：`<fightingstone from-here="China"></fightingstone>`。
 
@@ -508,6 +515,8 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
             }
         });
     </script>
+
+# 第三季 —— Vue 选项
 
 ## 18. propsData Option 全局扩展的数据传递
 
@@ -796,6 +805,8 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
 
 现在我们的插值形式就变成了 `${}`。
 
+# 第四季 —— 实例和内置组件
+
 ## 24. 实例入门-实例属性
 
 ### `Vue` 和 `Jquery.js` 一起使用
@@ -940,8 +951,47 @@ Vue.set 的作用就是在构造器外部操作构造器内部的数据、属性
 
 ### `$off` 关闭事件
 
-## 27. 内置组件 -slot讲解
+## 27. 内置组件 - slot 讲解
 
 `slot` 是标签的内容扩展，也就是说你用 `slot` 就可以在自定义组件时传递给组件内容，组件接收内容并输出。
 
+例子:
 
+    <div id="app">
+        <rocketeerli>
+            <span slot="blog_url">{{rocketeerli_data.blog_url}}</span>
+            <span slot="net_name">{{rocketeerli_data.net_name}}</span>
+            <span slot="skill">{{rocketeerli_data.skill}}</span>
+        </rocketeerli>
+    </div>
+    <template id="tep">
+        <div>
+            <p>博客地址：<slot name="blog_url"></slot></p>
+            <p>网名：<slot name="net_name"></slot></p>
+            <p>技术栈：<slot name="skill"></slot></p>
+        </div>
+    </template>
+    <script>
+        var rocketeerli = {
+            template: "#tep"
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                rocketeerli_data:{
+                    blog_url: "https://blog.csdn.net/rocketeerLi",
+                    net_name: "rocketeerli",
+                    skill: "none"
+                }
+            },
+            components:{
+                "rocketeerli":rocketeerli
+            }
+        });
+    </script>
+
+# 最后
+
+这个遗忘的速度确实很快，历时四天，第二天和第三天学的都快忘光了~
+
+完成于 2020/08/03
