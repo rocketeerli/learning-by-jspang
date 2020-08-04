@@ -1,6 +1,8 @@
 # 开始
 
-vue-cli 学习笔记
+vue-cli & vue-router 学习笔记
+
+# vue-cli 学习笔记
 
 ## 01. vue-cli 初体验
 
@@ -195,3 +197,84 @@ vue-cli 学习笔记
 ### `Hello.vue` 文件解读
 
 这个文件就是初始时看到的页面，也是分为 `<template><script><style>` 三个部分，以后我们大部分的工作都是写这些 `.vue` 结尾的文件。
+
+# vue-router 
+
+## 04. Vue-router入门
+
+### 安装 vue-router
+
+`vue-router` 是一个插件包，所以我们还是需要用 `npm` 来进行安装的。
+
+进入项目目录，输入下面命令：
+
+	npm install vue-router --save-dev
+
+### `router/index.js` 文件
+
+代码解释：
+
+	import Vue from 'vue'   //引入Vue
+	import Router from 'vue-router'  //引入vue-router
+	import Hello from '@/components/Hello'  //引入根目录下的Hello.vue组件
+
+	Vue.use(Router)  //Vue全局使用Router
+
+	export default new Router({
+	  routes: [              //配置路由，这里是个数组
+		{                    //每一个链接都是一个对象
+		  path: '/',         //链接路径
+		  name: 'Hello',     //路由名称，
+		  component: Hello   //对应的组件模板
+		}
+	  ]
+	})
+
+### 增加一个Hi的路由和页面 
+
+1. 在 `src/components` 目录下，新建 `Hi.vue` 文件。编写文件内容，和我们之前讲过的一样，文件要包括三个部分 `<template>`, `<script>`和 `<style>`。
+
+2. 引入 `Hi` 组件：我们在 `router/index.js` 文件的上边使用 `import` 引入 `Hi` 组件。
+
+3. 增加路由配置：在 `router/index.js` 文件的 `routes[]` 数组中，新增加一个对象。
+
+### router-link 制作导航
+
+例子：
+
+	<div>
+        <router-link to="/">首页</router-link> |
+        <router-link to="/Hi">Hi 页面</router-link> |
+    </div>
+
+## 05. vue-router配置子路由
+
+子路由的情况一般用在一个页面有他的基础模版，然后它下面的页面都隶属于这个模版，只是部分改变样式。
+
+步骤：
+
+1. 改造 `App.vue` 的导航代码
+
+    <router-link to="/">首页</router-link> |
+    <router-link to="/Hi">Hi 页面</router-link> |
+    <router-link to="/hi/hi1">Hi 页面1</router-link> |
+    <router-link to="/hi/hi2">Hi 页面2</router-link> |
+
+2. 改写 `components/Hi.vue` 页面
+
+把 `Hi.vue` 改成一个通用的模板，加入 `<router-view>` 标签，给子模板提供插入位置。
+
+	<router-view></router-view>
+
+3. 在 `components` 目录下新建两个组件模板 `Hi1.vue` 和 `Hi2.vue`
+
+4. 修改 `router/index.js` 代码
+
+我们现在导航有了，母模板和子模板也有了，只要改变我们的路由配置文件就可以了。
+
+子路由的写法是在原有的路由配置下加入 `children` 字段。
+
+	children:[
+	{path:'/',component:xxx},
+	{path:'xx',component:xxx},
+	]
