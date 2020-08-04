@@ -247,7 +247,7 @@ vue-cli & vue-router 学习笔记
         <router-link to="/Hi">Hi 页面</router-link> |
     </div>
 
-## 05. vue-router配置子路由
+## 05. vue-router 配置子路由
 
 子路由的情况一般用在一个页面有他的基础模版，然后它下面的页面都隶属于这个模版，只是部分改变样式。
 
@@ -278,3 +278,31 @@ vue-cli & vue-router 学习笔记
 	{path:'/',component:xxx},
 	{path:'xx',component:xxx},
 	]
+
+## 06. vue-router 参数传递
+
+### 用 `name` 传递参数
+
+1. 在路由文件 `src/router/index.js` 里配置 `name` 属性。
+
+2. 模板里(`src/App.vue`)用 `$route.name` 的形势接收，比如直接在模板中显示：
+
+### 通过 `<router-link>` 标签中的to传参
+
+基本语法：
+
+	<router-link :to="{name:xxx,params:{key:value}}">valueString</router-link>
+
+把 `src/reouter/index.js` 文件里给 `hi1` 配置的路由添加 `name` 属性 `name:'hi1'`。
+
+	{path:'/hi1',name:'hi1',component:Hi1},
+	
+最后在模板里(`src/components/Hi1.vue`)用 `$route.params.username` 进行接收。
+
+	{{$route.params.username}}
+	
+**name的用途：一是传参，二是在传参时起到名称作用**。
+
+## 07. 单页面多路由区域操作
+
+

@@ -15,12 +15,11 @@ export default new Router({
       component: HelloWorld
     }, {
       path: '/hi',
-      name: 'Hi',
       component: Hi,
       children:[
-        // {path:'/', component:Hi},
-        {path:'hi1', component:Hi1},
-        {path:'hi2', component:Hi2}
+        {path:'/', name:'Hello/Hi', component:Hi},
+        {path:'hi1', name:"hi1", component:Hi1},
+        {path:'hi2', name:"hi2", component:Hi2}
       ]
     }
   ]
