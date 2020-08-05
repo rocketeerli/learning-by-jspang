@@ -3,6 +3,8 @@
     <img src="./assets/logo.png"><br/>
     <router-link to="/">Home</router-link> | 
     <router-link to="/params/333/hei guys!">Params</router-link> | 
+    <router-link to="/goHome">go Home</router-link> | 
+    <router-link to="/goParams/227/Hello Params!">go Params</router-link> | 
     <!-- <router-link :to="{name:'hi'}">Hi</router-link> -->
     <router-view/>
     <!-- <router-view name="left" class="left"></router-view>

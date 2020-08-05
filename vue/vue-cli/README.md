@@ -359,6 +359,35 @@ vue-cli & vue-router 学习笔记
 
 	<router-link to="/params/333/hei guys!">Params</router-link>
 
+注：可以使用以下方式添加正则表达式，使参数只能为数字
+
+	{
+      path: '/params/:news_id(\\d+)/:news_title',
+      component:Params
+    }
+
 ## 09. `vue-router` 的重定向——`redirect`
 
 开发中有时候我们虽然设置的路径不一致，但是我们希望跳转到同一个页面，或者说是打开同一个组件。这时候我们就用到了路由的重新定向 `redirect` 参数。
+
+### `redirect` 基本重定向
+
+在路由配置文件中（`/src/router/index.js`）把原来的 `component` 换成 `redirect` 参数
+
+	{
+      path:'/goHome',
+      redirect: '/'
+    }
+
+添加导航栏：
+
+	<router-link to="/goHome">go home</router-link>
+
+### 重定向时传递参数
+
+只需要在 `ridirect` 后边的参数里复制重定向路径的 `path` 参数就可以
+
+	{
+      path:'/goParams/:id(\\d+)/:title',
+      redirect: '/params/:id/:title'
+    }
