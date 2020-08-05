@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Hi_1 from '@/components/Hi1'
 import Hi_2 from '@/components/Hi2'
+import Params from '@/components/params'
 
 Vue.use(Router)
 
@@ -11,20 +12,11 @@ export default new Router({
     {
       path: '/',
       name: 'HelloWorld',
-      components: {
-        default:HelloWorld,
-        left:Hi_1,
-        right:Hi_2
-      }
+      component:HelloWorld
     },
     {
-      path: '/hi',
-      name: 'hi',
-      components:{
-        default:HelloWorld,
-        left:Hi_2,
-        right:Hi_1
-      }
+      path: '/params/:news_id(\\d+)/:news_title',
+      component:Params
     }
   ]
 })

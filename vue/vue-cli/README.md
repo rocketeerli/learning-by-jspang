@@ -336,4 +336,29 @@ vue-cli & vue-router 学习笔记
 
 ## 08. `vue-router` 利用 `url` 传递参数
 
+###  `:` 冒号的形式传递参数
 
+#### 1. 在 `/src/router/index.js` 文件里配置路由。
+
+增加：
+
+    {
+      path: '/params/:news_id/:news_title',
+      component:Params
+    }
+	
+#### 2. 在 `src/components` 目录下建立 `params.vue` 组件
+
+    <div>
+        <h2>{{msg}}</h2>
+        <p>news_id: {{$route.params.news_id}}</p>
+        <p>news_title: {{$route.params.news_title}}</p>
+    </div>
+
+### 3. 在 `App.vue` 文件里加入 `<router-view>` 标签
+
+	<router-link to="/params/333/hei guys!">Params</router-link>
+
+## 09. `vue-router` 的重定向——`redirect`
+
+开发中有时候我们虽然设置的路径不一致，但是我们希望跳转到同一个页面，或者说是打开同一个组件。这时候我们就用到了路由的重新定向 `redirect` 参数。
