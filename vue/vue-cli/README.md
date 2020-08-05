@@ -253,22 +253,22 @@ vue-cli & vue-router 学习笔记
 
 步骤：
 
-1. 改造 `App.vue` 的导航代码
+### 1. 改造 `App.vue` 的导航代码
 
     <router-link to="/">首页</router-link> |
     <router-link to="/Hi">Hi 页面</router-link> |
     <router-link to="/hi/hi1">Hi 页面1</router-link> |
     <router-link to="/hi/hi2">Hi 页面2</router-link> |
 
-2. 改写 `components/Hi.vue` 页面
+### 2. 改写 `components/Hi.vue` 页面
 
 把 `Hi.vue` 改成一个通用的模板，加入 `<router-view>` 标签，给子模板提供插入位置。
 
 	<router-view></router-view>
 
-3. 在 `components` 目录下新建两个组件模板 `Hi1.vue` 和 `Hi2.vue`
+### 3. 在 `components` 目录下新建两个组件模板 `Hi1.vue` 和 `Hi2.vue`
 
-4. 修改 `router/index.js` 代码
+### 4. 修改 `router/index.js` 代码
 
 我们现在导航有了，母模板和子模板也有了，只要改变我们的路由配置文件就可以了。
 
@@ -391,3 +391,35 @@ vue-cli & vue-router 学习笔记
       path:'/goParams/:id(\\d+)/:title',
       redirect: '/params/:id/:title'
     }
+
+## 10. `alias` 别名
+
+### 1. 给路径起个别名：
+
+	{
+      path:'/hi1',
+      name:'hi1',
+      component:Hi_1,
+      alias:'/hi_one'
+    }
+
+### 2. 配置 `<router-link>`
+
+    <router-link to="/hi_1">Hi_1</router-link> | 
+    <router-link to="/hi_one">Hi_1</router-link> 
+
+### `redirect` 和 `alias` 的区别
+
+* redirect：仔细观察URL，`redirect` 是直接改变了url的值，把url变成了真实的path路径。
+
+* alias：URL路径没有别改变，这种情况更友好，让用户知道自己访问的路径，只是改变了 `<router-view>` 中的内容。
+
+注意：**别名请不要用在 `path` 为 `/` 中，如下代码的别名是不起作用的**。
+
+	{
+	  path: '/',
+	  component: Hello,
+	  alias:'/home'
+	}
+
+PS：亲测，貌似为根目录设置别名是可以的~所以上面的坑是不存在的~

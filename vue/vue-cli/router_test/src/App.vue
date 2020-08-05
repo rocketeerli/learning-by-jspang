@@ -2,13 +2,14 @@
   <div id="app">
     <img src="./assets/logo.png"><br/>
     <router-link to="/">Home</router-link> | 
+    <router-link to="/hi">Hi</router-link> | 
     <router-link to="/params/333/hei guys!">Params</router-link> | 
     <router-link to="/goHome">go Home</router-link> | 
     <router-link to="/goParams/227/Hello Params!">go Params</router-link> | 
-    <!-- <router-link :to="{name:'hi'}">Hi</router-link> -->
+    <router-link to="/hi_1">Hi_1</router-link> | 
+    <router-link to="/hi_one">Hi_one</router-link> | 
+    <router-link to="/home">alias_home</router-link> | 
     <router-view/>
-    <!-- <router-view name="left" class="left"></router-view>
-    <router-view name="right" class="right"></router-view> -->
   </div>
 </template>
 
@@ -25,17 +26,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-.left {
-  float:left;
-  width:50%;
-  height:300px;
-  background-color: #ccc;
-}
-.right {
-  float:right;
-  width:50%;
-  height:300px;
-  background-color: red;
 }
 </style>

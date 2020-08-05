@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import Hi from '@/components/Hi'
 import Hi_1 from '@/components/Hi1'
 import Hi_2 from '@/components/Hi2'
 import Params from '@/components/params'
@@ -12,7 +13,14 @@ export default new Router({
     {
       path: '/',
       name: 'HelloWorld',
-      component:HelloWorld
+      component:HelloWorld,
+      alias: '/home'
+    },{
+      path:'/hi',
+      component: Hi,
+      children:[
+        {path:'', components:{left:Hi_1, right:Hi_2}}
+      ]
     },{
       path: '/params/:news_id(\\d+)/:news_title',
       component:Params
@@ -22,6 +30,11 @@ export default new Router({
     },{
       path:'/goParams/:id(\\d+)/:title',
       redirect: '/params/:id/:title'
+    },{
+      path:'/hi_1',
+      name:'hi1',
+      component:Hi_1,
+      alias:'/hi_one'
     }
   ]
 })
