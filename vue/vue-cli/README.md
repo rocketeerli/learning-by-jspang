@@ -305,4 +305,35 @@ vue-cli & vue-router 学习笔记
 
 ## 07. 单页面多路由区域操作
 
+如果页面中有了多个 `<router-view>` 标签，也就是说我们需要在路由里配置这多个区域，配置主要是在 `components` 字段里进行。
+
+例如，我们在 `APP.vue` 里添加三个 `<router-view>` 标签：
+
+	<template>
+	  <div id="app">
+		<img src="./assets/logo.png">
+		<router-view/>
+		<router-view name="left" class="left"></router-view>
+		<router-view name="right" class="right"></router-view>
+	  </div>
+	</template>
+
+定义两个 `vue` 页面（`Hi_1`, `Hi_2`），在 `index.js` 文件中改写为：
+
+	export default new Router({
+	  routes: [
+		{
+		  path: '/',
+		  name: 'HelloWorld',
+		  components: {
+			default:HelloWorld,
+			left:Hi_1,
+			right:Hi_2
+		  }
+		}
+	  ]
+	})
+
+## 08. `vue-router` 利用 `url` 传递参数
+
 
