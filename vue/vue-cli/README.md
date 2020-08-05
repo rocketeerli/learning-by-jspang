@@ -423,3 +423,160 @@ vue-cli & vue-router 学习笔记
 	}
 
 PS：亲测，貌似为根目录设置别名是可以的~所以上面的坑是不存在的~
+
+## 11. 路由的过渡动画
+
+### `<transition>` 标签
+
+想让路由有过渡动画，需要在 `<router-view>` 标签的外部添加 `<transition>` 标签，标签还需要一个 `name` 属性。
+
+### css 过渡类名
+
+组件过渡过程中，会有四个CSS类名进行切换，这四个类名与 `transition` 的 `name` 属性有关，比如 `name=”anim”`,会有如下四个CSS类名：
+
+* anim-enter:进入过渡的开始状态，元素被插入时生效，只应用一帧后立刻删除。
+
+* anim-enter-active:进入过渡的结束状态，元素被插入时就生效，在过渡过程完成后移除。
+
+* anim-leave: 离开过渡的开始状态，元素被删除时触发，只应用一帧后立刻删除。
+
+* anim-leave-active: 离开过渡的结束状态，元素被删除时生效，离开过渡完成后被删除。
+
+例子：
+
+	.anim-enter {
+	  opacity:0;
+	}
+	.anim-enter-active{
+	  transition: opacity .5s;
+	}
+	.anim-leave{
+	  opacity: 1;
+	}
+	.anim-leave-active{
+	  opacity: 0;
+	  transition: opacity .5s;
+	}
+
+### 过渡模式 `mode`
+
+上边的代码设置了改变透明度的动画过渡效果，**但是默认的`mode`模式`in-out`模式**，这并不是我们想要的。
+
+* in-out: 新元素先进入过渡，完成之后当前元素过渡离开。
+
+* out-in: 当前元素先进行过渡离开，离开完成后新元素过渡进入。
+
+例子：
+
+    <transition name="anim" mode="out-in">
+      <router-view/>
+    </transition>
+
+## 12. `mode` 的设置和404页面的处理
+
+### mode
+
+在路由的属性中还有一个`mode`，`mode` 有两个值
+
+* histroy:当你使用 history 模式时，URL 就像正常的 url，例如 http://jsapng.com/lms/，也好看！
+
+* hash:默认`hash`值，但是hash看起来就像无意义的字符排列，不太好看也不符合我们一般的网址浏览习惯。
+
+### 404 页面
+
+1. 设置我们的路由配置文件：
+
+在 `/src/router/index.js` 中添加：
+
+	{
+	   path:'*',
+	   component:Error
+	}
+
+2. 新建404页面
+
+在 `/src/components/` 文件夹下新建一个 `Error.vue` 的文件。
+
+## 13. 路由中的钩子
+
+路由的钩子选项可以写在路由配置文件中，也可以写在我们的组件模板中。
+
+### 路由配置文件中的钩子函数
+
+我们可以直接在路由配置文件（`/src/router/index.js`）中写钩子函数。
+
+但是在路由文件中我们只能写一个`beforeEnter`,就是在进入此路由配置时。
+
+	{
+      path: '/params/:news_id(\\d+)/:news_title',
+      component:Params,
+      beforeEnter:(to, from, next)=>{
+        console.log(to);
+        console.log(from);
+        next();
+      }
+    }
+
+三个参数：
+
+* to:路由将要跳转的路径信息，信息是包含在对像里边的。
+
+* from:路径跳转前的路径信息，也是一个对象的形式。
+
+* next:路由的控制参数，常用的有 `next(true)` 和 `next(false)`。
+
+### 写在模板中的钩子函数
+
+写在模板中就可以有两个钩子函数可以使用：
+
+* beforeRouteEnter：在路由进入前的钩子函数。
+
+* beforeRouteLeave：在路由离开前的钩子函数。
+
+在 `params.vue` 中添加：
+
+    beforeRouteEnter:(to, from, next)=>{
+        console.log('准备进入 params 路由模板');
+        next();
+    },
+    beforeRouteLeave: (to, from, next)=>{
+        console.log('准备离开 params 路由模板');
+        next();
+    }
+
+## 14. 编程式导航
+
+### 前进和后退
+
+使用 `this.$router.go(-1)` 和 `this.$router.go(1)`
+
+先添加按钮：
+
+    <div>
+      <p><button @click="go_back">后退</button><button @click="go_forward">前进</button></p>
+    </div>
+
+然后添加方法：
+
+	  methods: {
+		go_back(){
+		  this.$router.go(-1);
+		},
+		go_forward(){
+		  this.$router.go(1);
+		}
+	  }
+
+### 跳转
+
+使用 `this.$router.push(‘/xxx ‘)`
+
+添加按钮：
+
+	<button @click="go_home">返回首页</button>
+
+添加方法：
+
+    go_home(){
+      this.$router.push('/');
+    }
