@@ -653,4 +653,77 @@ PS：亲测，貌似为根目录设置别名是可以的~所以上面的坑是�
 
 #### 7. 在 `count.vue` 模板中加入两个按钮，并调用 `mutations` 中的方法
 
+    <p>
+        <button @click="$store.commit('add')">+</button>
+        <button @click="$store.commit('sub')">-</button>
+    </p>
+
+## 16. state 访问状态对象
+
+状态对象赋值给内部对象，也就是把 `stroe.js` 中的值，赋值给我们模板里 `data` 中的值。
+
+有三种赋值方式：
+
+### 通过 `computed` 的计算属性直接赋值
+
+`computed` 属性可以在输出前，对 `data` 中的值进行改变。
+
+我们就利用这种特性把 `store.js` 中的 `state` 值赋值给我们模板中的 `data` 值。
+
+    computed:{
+        count(){
+            return this.$store.state.count;
+        }
+    }
+
+注意：**`return this.$store.state.count` 这一句，一定要写 `this`，要不你会找不到 `$store`**。
+
+### 通过 `mapState` 的对象来赋值
+
+首先要用 `import` 引入 `mapState`：
+
+	import {mapState} from 'vuex';
+
+在 `computed` 计算属性里写如下代码：
+
+    computed:mapState({
+        count:state=>state.count
+    })
+
+### 通过 `mapState` 的数组来赋值
+
+这个是最简单的写法了：
+
+	computed:mapState(['count'])
+
+## 17. `Mutations` 修改状态
+
+### `$store.commit()` 修改状态
+
+	<button @click="$store.commit('add')">+</button>
+	<button @click="$store.commit('reduce')">-</button>
+
+### 传值
+
+在 `store.js` 文件里给 `add` 方法加上一个参数`num`：
+
+    add(state, num){
+        state.count += num;
+    }
+
+修改按钮的 `commit()` 方法传递的参数：
+
+	<p>
+        <button @click="$store.commit('add', 10)">+</button>
+        <button @click="$store.commit('sub')">-</button>
+    </p>
+
+### 模板获取 `Mutations` 方法
+
+#### 1.在模板 `count.vue` 里用 `import` 引入我们的 `mapMutations`：
+
+	import { mapState, mapMutations } from 'vuex'
+
+#### 2. 在模板的 `<script>` 标签里添加 `methods` 属性，并加入 `mapMutations`：
+
 
