@@ -198,7 +198,7 @@ vue-cli & vue-router 学习笔记
 
 这个文件就是初始时看到的页面，也是分为 `<template><script><style>` 三个部分，以后我们大部分的工作都是写这些 `.vue` 结尾的文件。
 
-# vue-router 
+# vue-router 学习笔记
 
 ## 04. Vue-router入门
 
@@ -580,3 +580,77 @@ PS：亲测，貌似为根目录设置别名是可以的~所以上面的坑是�
     go_home(){
       this.$router.push('/');
     }
+
+# vuex 学习笔记
+
+## 15. 初出茅庐 来个小Demo
+
+### 安装 vuex
+
+利用 `npm` 包管理工具，进行安装 `vuex`
+
+	npm install vuex --save
+
+这里一定要加上 `–save`，因为你这个包我们在生产环境中是要使用的。
+
+### 使用 vuex
+
+#### 1. 新建 `store.js` 文件，文件中引入我们的 `vue` 和 `vuex`。
+
+	import Vue from 'vue';
+	import Vuex from 'vuex';
+
+#### 2. 使用我们 `vuex`，引入之后用 `Vue.use` 进行引用。
+
+	Vue.use(Vuex);
+
+#### 3. `store.js` 文件里增加一个常量对象
+
+	const state={
+		count:1
+	}
+
+#### 4. 用 `export default` 封装代码，让外部可以引用
+
+	export default new Vuex.Store({
+		state
+	})
+
+#### 5. 在模板中用 `$store.state.count` 输出 `count` 的值
+
+	<template>
+		<div>
+			<h2>{{msg}}</h2><hr/>
+			<h3>{{$store.state.count}}</h3>
+			<p>
+				<button @click="$store.commit('add')">ADD</button>
+				<button @click="$store.commit('sub')">SUB</button>
+			</p>
+		</div>
+	</template>
+	<script>
+	import store from '@/vuex/store';
+	export default {
+		data(){
+			return{
+				msg: 'Hello Vuex !'
+			}
+		},
+		store
+	}
+	</script>
+
+#### 6. 在 `store.js` 文件中加入两个改变 `state` 的方法
+
+	const mutations={
+		add(state){
+			state.count++;
+		},
+		sub(state){
+			state.count--;
+		}
+	}
+
+#### 7. 在 `count.vue` 模板中加入两个按钮，并调用 `mutations` 中的方法
+
+
