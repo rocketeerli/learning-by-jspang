@@ -19,6 +19,21 @@ const getters = {
     }
 }
 
+const actions = {
+    addAction(context) {
+        context.commit('add', 5);
+        setTimeout(()=>{context.commit('sub')}, 3000);
+        console.log('比 sub 先执行...');
+    },
+    subAction({commit}) {
+        commit('sub');
+    }
+}
+
+const moduleA = {
+    state, mutations, getters, actions
+}
+
 export default new Vuex.Store({
-    state, mutations, getters
+    modules:{a: moduleA}
 })
