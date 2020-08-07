@@ -726,4 +726,43 @@ PS：亲测，貌似为根目录设置别名是可以的~所以上面的坑是�
 
 #### 2. 在模板的 `<script>` 标签里添加 `methods` 属性，并加入 `mapMutations`：
 
+	methods:mapMutations(['add', 'sub'])
+
+## 18. `getters` 计算过滤操作
+
+`getters` 可以把他看作在获取数据之前进行的一种再编辑,相当于对数据的一个过滤和加工。
+
+可以把它看作 `store.js` 的计算属性。
+
+### `getters` 基本用法
+
+首先要在 `store.js` 里用 `const` 声明我们的 `getters` 属性：
+
+	const getters = {
+		count:state => {
+			return state.count += 100;
+		}
+	}
+
+写好了 `gettters` 之后，我们还需要在 `Vuex.Store()` 里引入：
+
+	export default new Vuex.Store({
+		state, mutations, getters
+	})
+
+对 `computed` 属性进行一个改造。改造时使用 `ES6` 的展开运算符`…`：
+
+    computed: {
+        ...mapState(['count']),
+        count() {
+            return this.$store.getters.count;
+        }
+    }
+
+### 用 `mapGetters` 简化模板写法
+
+用法与 `mapState`, `mapMutations` 很相似：
+
+	mapGetters(['count'])
+
 
