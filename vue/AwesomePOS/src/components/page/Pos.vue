@@ -43,16 +43,46 @@
                             <div>
                                 <ul class="cook-list">
                                     <li v-for="goods in type0Goods">
-                                        <span class="food-img"><img :src="goods.goodsImg" width="100%"></span>
+                                        <span class="food-img"><img :src="goods_img[goods.goodsId-1]" width="100%"></span>
                                         <span class="food-name">{{goods.goodsName}}</span>
                                         <span class="food-price">￥{{goods.price}}元</span>
                                     </li>
                                 </ul>
                             </div>
                         </el-tab-pane>
-                        <el-tab-pane label="小食">小食</el-tab-pane>
-                        <el-tab-pane label="饮料">饮料</el-tab-pane>
-                        <el-tab-pane label="套餐">套餐</el-tab-pane>
+                        <el-tab-pane label="小食">
+                            <div>
+                                <ul class="cook-list">
+                                    <li v-for="goods in type1Goods">
+                                        <span class="food-img"><img :src="goods_img[goods.goodsId-1]" width="100%"></span>
+                                        <span class="food-name">{{goods.goodsName}}</span>
+                                        <span class="food-price">￥{{goods.price}}元</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </el-tab-pane>
+                        <el-tab-pane label="饮料">
+                            <div>
+                                <ul class="cook-list">
+                                    <li v-for="goods in type2Goods">
+                                        <span class="food-img"><img :src="goods_img[goods.goodsId-1]" width="100%"></span>
+                                        <span class="food-name">{{goods.goodsName}}</span>
+                                        <span class="food-price">￥{{goods.price}}元</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </el-tab-pane>
+                        <el-tab-pane label="套餐">
+                            <div>
+                                <ul class="cook-list">
+                                    <li v-for="goods in type3Goods">
+                                        <span class="food-img"><img :src="goods_img[goods.goodsId-1]" width="100%"></span>
+                                        <span class="food-name">{{goods.goodsName}}</span>
+                                        <span class="food-price">￥{{goods.price}}元</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </el-tab-pane>
                     </el-tabs>
                 </div>
             </el-col>
@@ -60,6 +90,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
     name: 'pos',
     data() {
@@ -140,10 +171,13 @@ export default {
                     goodsImg:"/static/003.png",
                     goodsName:'和风汉堡',
                     price:15
-                }, {
+                }
+            ],
+            type1Goods:[
+                {
                     goodsId:4,
-                    goodsImg:"/static/004.png",
-                    goodsName:'快乐全家桶',
+                    goodsImg:"/static/011.png",
+                    goodsName:'大包薯条',
                     price:80
                 }, {
                     goodsId:5,
@@ -155,7 +189,10 @@ export default {
                     goodsImg:"/static/006.png",
                     goodsName:'魔法鸡块',
                     price:20
-                }, {
+                }
+            ],
+            type2Goods:[
+                {
                     goodsId:7,
                     goodsImg:"/static/007.png",
                     goodsName:'可乐大杯',
@@ -165,19 +202,62 @@ export default {
                     goodsImg:"/static/008.png",
                     goodsName:'雪顶咖啡',
                     price:18
-                }, {
-                    goodsId:9,
-                    goodsImg:"/static/009.png",
-                    goodsName:'大块鸡米花',
-                    price:15
-                }, {
-                    goodsId:20,
-                    goodsImg:"/static/010.png",
-                    goodsName:'香脆鸡柳',
-                    price:17
                 }
+            ],
+            type3Goods:[
+                {
+                    goodsId:9,
+                    goodsImg:"/static/012.png",
+                    goodsName:'儿童欢乐套餐',
+                    price:80
+                }, {
+                    goodsId:10,
+                    goodsImg:"/static/004.png",
+                    goodsName:'快乐全家桶',
+                    price:80
+                }
+            ],
+            goods_img:[
+                "/static/001.png",  // 香辣鸡腿堡
+                "/static/002.png",  // 田园鸡腿堡
+                "/static/003.png",  // 和风汉堡
+                "/static/011.png",  // 大包薯条
+                "/static/005.png",  // 脆皮炸鸡腿
+                "/static/006.png",  // 魔法鸡块
+                "/static/007.png",  // 可乐大杯
+                "/static/008.png",  // 雪顶咖啡
+                "/static/012.png",  // 儿童欢乐套餐
+                "/static/004.png",  // 快乐全家桶
+                "/static/009.png",  // 大块鸡米花
+                "/static/010.png",  // 香脆鸡柳
             ]
         }
+    },
+    methods() {
+        
+    },
+    created() {
+        // axios.get('https://www.easy-mock.com/mock/5b8b30dbf032f03c5e71de7f/kuaican/oftenGoods')
+        //      .then(response=>{
+        //          console.log(response);
+        //          this.hotGoods = response.data;
+        //      })
+        //      .catch(error=>{
+        //          console.log(error);
+        //          alert('网络错误，不能访问！');
+        //      });
+        // axios.get('https://www.easy-mock.com/mock/5b8b30dbf032f03c5e71de7f/kuaican/typeGoods')
+        //      .then(response=>{
+        //          console.log(response);
+        //          this.type0Goods = response.data[0];
+        //          this.type1Goods = response.data[1];
+        //          this.type2Goods = response.data[2];
+        //          this.type3Goods = response.data[3];
+        //      })
+        //      .catch(error=>{
+        //          console.log(error);
+        //          alert('网络错误，不能访问！');
+        //      })
     },
     mounted: function(){
         // 所有虚拟 DOM 都加载后

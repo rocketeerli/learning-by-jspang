@@ -119,7 +119,7 @@
                 <el-button type="text" size="small">增加</el-button>
             </template>
         </el-table-column>
-	</el-table>
+    </el-table>
 
 `:data` 是用来绑定数据源的，`border` 代表表格有边框效果。
 
@@ -129,9 +129,9 @@
 
 	<div class="div-btn">
 		<el-button type="warning">挂单</el-button>
-        <el-button type="danger">删除</el-button>
-        <el-button type="success">结账</el-button>
-    </div>
+	    <el-button type="danger">删除</el-button>
+	    <el-button type="success">结账</el-button>
+	</div>
 
 `el-button` 的 `type` 属性是设置按钮样式的。
 
@@ -144,18 +144,18 @@
 写法：
 
 	<el-col :span='17'>
-        <div class="hot-goods">
-            <div class="title">常用商品</div>
-            <div class="hot-goods-list">
-                <ul>
-                    <li>
-                        <span>香辣鸡腿堡</span>
-                        <span class="hot-goods-price">￥16元</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </el-col>
+	    <div class="hot-goods">
+	        <div class="title">常用商品</div>
+	        <div class="hot-goods-list">
+	            <ul>
+	                <li>
+	                    <span>香辣鸡腿堡</span>
+	                    <span class="hot-goods-price">￥16元</span>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	</el-col>
 
 定义 `CSS` 样式：
 
@@ -189,13 +189,13 @@
 使用标签页组件：
 
 	<div class="goods-type">
-        <el-tabs>
-            <el-tab-pane label="汉堡">汉堡</el-tab-pane>
-            <el-tab-pane label="小食">小食</el-tab-pane>
-            <el-tab-pane label="饮料">饮料</el-tab-pane>
-            <el-tab-pane label="套餐">套餐</el-tab-pane>
-        </el-tabs>
-    </div>
+	    <el-tabs>
+	        <el-tab-pane label="汉堡">汉堡</el-tab-pane>
+	        <el-tab-pane label="小食">小食</el-tab-pane>
+	        <el-tab-pane label="饮料">饮料</el-tab-pane>
+	        <el-tab-pane label="套餐">套餐</el-tab-pane>
+	    </el-tabs>
+	</div>
 
 展开写具体类别：
 
@@ -203,7 +203,7 @@
         <div>
             <ul class="cook-list">
                 <li>
-                    <span class="food-img"><img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1596883634&di=2ef460f8df310b493416d3c3450a3a1f&src=http://oojjixt82.bkt.clouddn.com/forum/201812/27/162252m3w0tkvf71eh0dd1.jpg" width="100%"></span>
+                    <span class="food-img"><img src="/static/001.png"></span>
                     <span class="food-name">香辣鸡腿堡</span>
                     <span class="food-price">￥20.00元</span>
                 </li>
@@ -222,3 +222,43 @@
 1. 网页把根域名作为相对路径的根目录，然而我们文件的路径是相对于项目文件的根目录的。
 
 2. 需要把静态资源文件放到 `vue-cli` 的文件结构中的 `static` 文件夹。
+
+## 08. `Axios` 从远程读取数据
+
+### 安装 `Axios`
+
+	npm install axios --save
+
+由于 `axios` 是需要打包到生产环境中的，所以我们使用 `–save` 来进行安装。
+
+### 引入`Axios`
+
+	import axios from 'axios'
+
+### 使用
+
+	axios.get('https://www.easy-mock.com/mock/5b8b30dbf032f03c5e71de7f/kuaican/oftenGoods')
+	     .then(response=>{
+	         console.log(response);
+	         this.hotGoods = response.data;
+	     })
+	     .catch(error=>{
+	         console.log(error);
+	         alert('网络错误，不能访问！');
+	     });
+	axios.get('https://www.easy-mock.com/mock/5b8b30dbf032f03c5e71de7f/kuaican/typeGoods')
+	     .then(response=>{
+	         console.log(response);
+	         this.type0Goods = response.data[0];
+	         this.type1Goods = response.data[1];
+	         this.type2Goods = response.data[2];
+	         this.type3Goods = response.data[3];
+	     })
+	     .catch(error=>{
+	         console.log(error);
+	         alert('网络错误，不能访问！');
+	     })
+
+## 09. 订单模块制作 核心功能-1
+
+
