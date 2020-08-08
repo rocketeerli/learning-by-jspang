@@ -261,4 +261,121 @@
 
 ## 09. 订单模块制作 核心功能-1
 
+增加 `添加商品` 的方法：
 
+    methods: {
+        addOrderList(goods) {
+            this.total_money = 0;
+            this.total_count = 0;
+            // 商品是否已经存在列表中
+            let is_exist = false;
+            for (let i=0; i<this.tableData.length; i++){
+                if(this.tableData[i].goodsId == goods.goodsId) {
+                    is_exist = true;
+                }
+            }
+            // 根据判断的值编写业务逻辑
+            if(is_exist){
+                // 改变列表中的商品数量
+                let arr = this.tableData.filter(a=>a.goodsId==goods.goodsId);
+                arr[0].count++;
+            } else {
+                // 增加新商品
+                let new_goods = {
+                    goodsId: goods.goodsId,
+                    goodsName: goods.goodsName,
+                    price: goods.price,
+                    count: 1
+                };
+                this.tableData.push(new_goods);
+            }
+            this.tableData.forEach(element=>{
+                this.total_count += element.count;
+                this.total_money += element.price * element.count;
+            })
+        }
+    },
+
+绑定点击方法：
+
+	@click="addOrderList(goods)"
+
+CSS 样式设置光标变为小手：
+
+	cursor: pointer;
+
+使用 `scope.row` 获取改行对象：
+
+    <template slot-scope="scope">
+        <el-button type="text" size="small">删除</el-button>
+        <el-button type="text" size="small" @click="addOrderList(scope.row)">增加</el-button>
+    </template>
+
+## 10. 订单模块制作 核心功能-2
+
+### 删除列表中的单个商品
+
+    // 删除单个商品
+    deleteSingleGoods(goods) {
+        this.tableData = this.tableData.filter(a=>a.goodsId != goods.goodsId);
+        this.getAllMoney();
+    },
+
+### 删除列表中的全部商品
+
+    // 删除所有商品
+    deleteAllGoods() {
+        this.tableData = [];
+        this.getAllMoney();
+    },
+
+### 模拟结账
+
+制作思路：
+
+1. 设置我们Aixos的Pos方法。
+
+2. 接受返回值进行处理。
+
+3. 如果成功，清空现有构造器里的tableData，totalMoney，totalCount数据。
+
+4. 进行用户的友好提示。
+
+这里仅实现提示功能：
+
+	// 模拟结账
+    checkout() {
+        if(this.total_count != 0) {
+            this.deleteAllGoods();
+            this.$message({
+                message: '结账成功，感谢！',
+                type: 'success'
+            })
+        } else {
+            this.$message.error("对不起，不能空结！");
+        }
+    }
+
+## 11. 项目打包和上线
+
+**打包注意事项**：
+
+1. 把绝对路径改为相对路径。
+
+打开 `config/index.js` 会看到一个 `build` 属性，这里就打包的基本配置了。
+
+在这里可以修改打包的目录，打包的文件名。最重要的是**一定要把绝对目录改为相对目录**。
+
+	assetsPublicPath:'./'
+
+2. 在命令行中进行打包。
+
+使用命令：
+
+	npm run build
+
+# 最后
+
+花了两天时间看完了，对前端项目有了个大概认识，但感觉很多东西还是没有理解，希望以后多练习吧。
+
+完成于 2020/08/09

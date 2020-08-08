@@ -2,7 +2,7 @@
 
 ## vue-basis
 
-01-27视频
+01-27 视频
 
 Vue2.0 四季基础  代码+笔记
 
@@ -16,7 +16,7 @@ Vue2.0 四季基础  代码+笔记
 
 ## vue-cli
 
-28-47视频 
+28-46 视频 
 
 vue-cli & vue-router & vuex  代码+笔记
 
@@ -25,3 +25,11 @@ vue-cli & vue-router & vuex  代码+笔记
 * 04-14: vue-router
 
 * 15-20: vuex
+
+## AwesomePOS
+
+47-57 视频
+
+Vue实战视频-快餐店收银系统
+
+使用的技术： Vue + Webpack + Element + Axios + vueRouter
