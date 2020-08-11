@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>border-radius</title>
+	<style>
+		.demo {
+			width: 200px;
+			height: 200px;
+			border: 1px solid #ccc;
+			background-color: #F66;
+			margin: 50px auto;
+			/*简写方式*/
+			/*border-radius: 50%;*/
+			/*傻瓜式写法*/
+			/*border-top-left-radius: 50%;
+			border-top-right-radius: 50%;
+			border-bottom-right-radius: 50%;
+			border-bottom-left-radius: 50%;*/
+			/*简写方法*/
+			/*border-radius: 100px 50px 20px 30px;*/
+			border-top-left-radius: 100px 200px;
+		}
+		.demo-cycle {
+			width: 100px;
+			height: 200px;
+			border: 1px solid #ccc;
+			background-color: #F66;
+			margin: 50px auto;
+			border-radius: 100px 0px 0px 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="demo"></div>
+	<div class="demo-cycle"></div>
+</body>
+</html>

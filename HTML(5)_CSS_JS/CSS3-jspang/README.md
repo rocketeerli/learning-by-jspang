@@ -5,10 +5,10 @@
 # 笔记
 
 * Demo01： 01 设置鼠标进入时的图像平滑变化
-
 * Demo02： 03 动态伪类选择器 & UI 伪类选择器
-
 * Demo03： 04 结构伪类选择器
+* Demo04： 05 伪元素
+* Demo05： 06 `border-radius` 画圆角
 
 ## 01. 嫁汉嫁汉穿衣吃饭
 
@@ -151,7 +151,7 @@ PS：这里实现图像为圆角图。
 
 `CSS` 伪元素用于向某些选择器设置**特殊效果**。
 
-|  伪元素         | 作用                        |  IE |  F |  N | W3C| 
+|  伪元素         | 作用                        |  IE |  F |  N | W3C|
 |  ----          | ----                        | ---- |---| -- | -- |
 | :first-letter  | 将特殊的样式添加到文本的首字母 | 5    | 1 | 8 | 1 |
 | :first-line    | 将特色的样式添加到文本的首行   | 5   | 1  | 8 | 1 |
@@ -175,3 +175,49 @@ PS：这里实现图像为圆角图。
 	}
 
 注：`:before` 和  `:after` 里面必须加 `content` 属性。
+
+## 06. `CSS3` 用 `border-radius` 画圆形
+
+`Border-radius` 优点：
+
+1. 减少网站的维护工作量。
+
+2. 提高网站性能。
+
+3. 增加了视觉美观性。
+
+### 简写方式
+
+画圆：
+
+	border-radius: 50%;
+
+不规则的圆：
+
+	border-radius: 100px 50px 20px 30px;
+
+### 傻瓜式写法
+
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+	border-bottom-left-radius: 50%;
+
+### 分别设置一个角的 `x` 轴和 `y` 轴
+
+椭圆变高：
+
+	border-top-left-radius: 100px 200px;
+
+### 画半圆
+
+左半圆：
+
+	.demo-cycle {
+		width: 100px;
+		height: 200px;
+		border: 1px solid #ccc;
+		background-color: #F66;
+		margin: 50px auto;
+		border-radius: 100px 0px 0px 100px;
+	}
