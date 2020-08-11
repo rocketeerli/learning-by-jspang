@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pseudo element</title>
+	<style>
+		.demo {
+			border: 1px solid #ccc;
+			width: 300px;
+			margin: 50px auto;
+			padding: 10px;
+		}
+		/*伪元素 首字符*/
+		.demo::first-letter {
+			font-size: 40px;
+			font-weight: bold;
+			float: left;
+		}
+		/*首行*/
+		.demo::first-line {
+			color: #F66;
+		}
+		/*before 和 after*/
+		.demo-img {
+			width: 300px;
+			border: 1px solid #ccc;
+			margin: 10px auto;
+			padding: 10px;
+			text-align: center;
+		}
+		.demo-img::before {
+			display: block;
+			content: url(./head.jpg);
+			height: 300px;
+			overflow: hidden;
+		}
+		.demo-img::after {
+			display: block;
+			content: url(./bottom.png);
+			overflow: hidden;
+			height: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="demo">
+		简介：CSS3是CSS（层叠样式表）技术的升级版本，于1999年开始制订，2001年5月23日W3C完成了CSS3的工作草案，主要包括盒子模型、列表模块、超链接方式、语言模块、背景和边框、文字特效、多栏布局等模块。CSS演进的一个主要变化就是W3C决定将CSS3分成一系列模块。浏览器厂商按CSS节奏快速创新，因此通过采用模块方法，CSS3规范里的元素能以不同速度向前发展，因为不同的浏览器厂商只支持给定特性。但不同浏览器在不同时间支持不同特性，这也让跨浏览器开发变得复杂。
+	</div>
+	<div class="demo-img">
+		Hello rocketeerli!
+	</div>
+</body>
+</html>
