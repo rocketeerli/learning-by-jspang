@@ -1,0 +1,23 @@
+.diamond {
+	width: 200px;
+	height: 200px;
+	background-color: #6A6;
+	margin: 100px auto;
+	/*transform: rotate(45deg);*/
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.prarllel {
+	width: 200px;
+	height: 100px;
+	background-color: #6A6;
+	margin: 100px auto;
+	-webkit-transform: skew(20deg, 30deg);
+	-ms-transform: skew(20deg, 30deg);
+	-o-transform: skew(20deg, 30deg);
+	transform: skew(20deg, 30deg);
+}

@@ -9,6 +9,8 @@
 * Demo03： 04 结构伪类选择器
 * Demo04： 05 伪元素
 * Demo05： 06 `border-radius` 画圆角
+* Demo06： 07 `border` 画对话框
+* Demo07： 08 `transform` 画菱形和平行四边形
 
 ## 01. 嫁汉嫁汉穿衣吃饭
 
@@ -220,4 +222,102 @@ PS：这里实现图像为圆角图。
 		background-color: #F66;
 		margin: 50px auto;
 		border-radius: 100px 0px 0px 100px;
+	}
+
+## 07. `CSS3` 画三角形和对话框
+
+### 设置边框
+
+	.triangle {
+		border-top: 50px solid #ccc;
+		border-left: 50px solid #F00;
+		border-bottom: 50px solid #0f0;
+		border-right: 50px solid #00f;
+		width: 0px;
+		height: 0px;
+		margin: 50px auto;
+	}
+
+设置三角形：
+
+	.triangle {
+		border-top: 50px solid transparent;
+		border-left: 0px solid #F00;
+		border-bottom: 50px solid transparent;
+		border-right: 50px solid #00f;
+		width: 0px;
+		height: 0px;
+		margin: 50px auto;
+	}
+
+### 对话框
+
+首先设置不带三角形的对话框：
+
+	.dialog {
+		background-color: #6A6;
+		margin: 50px auto;
+		width: 300px;
+		height:  25px;
+		line-height: 25px;
+		padding: 10px;
+		border-radius: 6px;
+		color: #fff;
+		position: relative;
+	}
+
+然后设置三角形：
+
+	.dialog::before {
+		content: '';
+		border-left: 0px solid #6A6;
+		border-top: 10px solid transparent;
+		border-bottom: 10px solid transparent;
+		border-right: 10px solid #F00;
+		position: absolute;
+		left: -10px;
+		top: 10px;
+	}
+
+**注意这里需要相对定位**。
+
+## 08. `CSS3` 画菱形和平行四边形
+
+### 画菱形
+
+先画一个正方形，然后旋转 45 度：
+
+	.diamond {
+		width: 200px;
+		height: 200px;
+		background-color: #6A6;
+		margin: 100px auto;
+		transform: rotate(-45deg);
+	}
+
+增加前缀信息，以支持多种浏览器：
+
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+
+注意：`rotate()` 是正数时，表示顺时针旋转；负数表示逆时针旋转。
+
+### 画平行四边形
+
+利用 `skew()` 倾斜函数，可以接受俩值，分别是 `x` 轴和 `y` 轴的倾斜角度。
+
+一个值也可以，仅代表 `x` 轴倾斜，此时是左右边倾斜。
+
+	.prarllel {
+		width: 200px;
+		height: 100px;
+		background-color: #6A6;
+		margin: 100px auto;
+		-webkit-transform: skew(20deg, 30deg);
+		-ms-transform: skew(20deg, 30deg);
+		-o-transform: skew(20deg, 30deg);
+		transform: skew(20deg, 30deg);
 	}
