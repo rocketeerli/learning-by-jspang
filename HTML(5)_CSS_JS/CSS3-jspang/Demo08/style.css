@@ -1,0 +1,63 @@
+/*五角星*/
+#star {
+	width: 0px;
+	height: 0px;
+	margin: 150px auto;
+	border-bottom: 70px solid red;
+	border-left: 100px solid transparent;
+	border-right: 100px solid transparent;
+	border-top: 0px solid transparent;
+	-webkit-transform: rotate(35deg);
+	-ms-transform: rotate(35deg);
+	-o-transform: rotate(35deg);
+	transform: rotate(35deg);
+	position: relative;
+}
+#star::before {
+	content: '';
+	width: 0px;
+	height: 0px;
+	border-bottom: 80px solid red;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	position: absolute;
+	-webkit-transform: rotate(-35deg);
+	-ms-transform: rotate(-35deg);
+	-o-transform: rotate(-35deg);
+	transform: rotate(-35deg);
+	top: -45px;
+	left: -65px;
+}
+#star::after {
+	content: '';
+	position: absolute;
+	border-bottom: 70px solid red;
+	border-left: 100px solid transparent;
+	border-right: 100px solid transparent;
+	-webkit-transform: rotate(-70deg);
+	-ms-transform: rotate(-70deg);
+	-o-transform: rotate(-70deg);
+	transform: rotate(-70deg);
+	top: 3px;
+	left: -105px;
+}
+/*六角星*/
+#six-star {
+	width: 0px;
+	height: 0px;
+	border-bottom: 100px solid red;
+	border-left: 58px solid transparent;
+	border-right: 58px solid transparent;
+	margin: 50px auto;
+	position: relative;
+}
+#six-star::after {
+	content: '';
+	/*margin: 50px auto;*/
+	border-top: 100px solid red;
+	border-left: 58px solid transparent;
+	border-right: 58px solid transparent;
+	position: absolute;
+	left: -58px;
+	top: 33px;
+}
