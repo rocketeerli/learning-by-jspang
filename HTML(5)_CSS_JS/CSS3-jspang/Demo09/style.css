@@ -1,0 +1,52 @@
+#trapezoid {
+	width: 50px;
+	height: 50px;
+	margin: 50px auto;
+	border-top: 50px solid #F00;
+	border-left: 50px solid #0F0;
+	border-right: 50px solid #00F;
+	border-bottom: 50px solid #FF0;
+}
+#pentagon {
+	margin: 100px auto;
+	width: 54px;
+	height: 0px;
+	border-top: 50px solid red;
+	border-left: 18px solid transparent;
+	border-right: 18px solid transparent;
+	position: relative;
+}
+#pentagon::after {
+	content: '';
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	border-bottom: 35px solid red;
+	border-left: 45px solid transparent;
+	border-right: 45px solid transparent;
+	top: -85px;
+	left: -18px;
+}
+#hexagon {
+	margin: 50px auto;
+	position: relative;
+	width: 100px;
+	height: 55px;
+	background-color: red;
+}
+#hexagon::before {
+	content: '';
+	position: absolute;
+	border-bottom: 25px solid red;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	top: -25px;
+}
+#hexagon::after {
+	content: '';
+	position: absolute;
+	border-top: 25px solid red;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	top: 55px;
+}
