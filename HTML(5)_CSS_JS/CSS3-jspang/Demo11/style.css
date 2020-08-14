@@ -1,0 +1,35 @@
+body {
+	background-color: #ccc;
+}
+#tai-chi {
+	width: 150px;
+	height: 300px;
+	margin: 50px auto;
+	border-radius: 50%;
+	background-color: white;
+	border-left: 150px solid black;
+	position: relative;
+}
+#tai-chi::before {
+	content: '';
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	padding: 25px;
+	border-radius: 50%;
+	background-color: white;
+	border: 50px solid black;
+	left: -75px;
+}
+#tai-chi::after {
+	content: '';
+	width: 0px;
+	height: 0px;
+	padding: 25px;
+	position: absolute;
+	border-radius: 50%;
+	background-color: black;
+	border: 50px solid white;
+	left: -75px;
+	bottom: 0px;
+}
