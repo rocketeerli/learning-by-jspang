@@ -2,7 +2,7 @@
 
 学完 Vue 之后，感觉自己前端基础知识欠缺太多，来这里补一下 CSS 的基本知识。
 
-# 笔记
+# 代码和代码对应的章节
 
 * Demo01： 01 设置鼠标进入时的图像平滑变化
 * Demo02： 03 动态伪类选择器 & UI 伪类选择器
@@ -15,6 +15,9 @@
 * Demo09： 10 `border` 画由三角形+梯形+长方形组成的五边形和六边形
 * Demo10： 11 `transform-origin` + `border-radius` 画心形和蛋形
 * Demo11： 12 `border-left` + `padding` + `border` 画太极阴阳图
+* Demo12： 13 `opacity` 制作透明背景层
+
+# 第一章—— `CSS3` 的简介和新特性
 
 ## 01. 嫁汉嫁汉穿衣吃饭
 
@@ -181,6 +184,8 @@ PS：这里实现图像为圆角图。
 	}
 
 注：`:before` 和  `:after` 里面必须加 `content` 属性。
+
+# 第二章——使用 `CSS3` 画图形
 
 ## 06. `CSS3` 用 `border-radius` 画圆形
 
@@ -389,3 +394,31 @@ PS：这里实现图像为圆角图。
 其中需要注意的是，利用 `padding` 画内部的小圆，利用 `border` 画外面的大圆。
 
 最后，使用 `left` 和 `bottom` 移动两个小的黑白圆环，形成太极阴阳图。
+
+# 第三章 —— 颜色、渐变、背景和边框
+
+## 13. `CSS3` 制作透明背景层
+
+### 透明的语法
+
+	opacity: value | inherit
+
+value: 数值，代表透明度。
+
+inherit: 继承，如果上一个层是透明的，那么它就是。
+
+### 设置阴影
+
+	box-shadow: x y width color;
+
+x: 代表 `x` 轴
+
+y: 代表 `y` 轴
+
+width： 代表阴影的宽度
+
+color: 代表阴影的颜色
+
+例子：
+
+	box-shadow: 3px 3px 5px #888;

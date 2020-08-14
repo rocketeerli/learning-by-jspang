@@ -1,0 +1,21 @@
+#background {
+	margin: 100px auto;
+	width: 1024px;
+	height: 683px;
+	background-image: url('./background.png');
+	position: relative;
+}
+#content {
+	position: absolute;
+	width: 600px;
+	height: 400px;
+	background-color: #FFF;
+	opacity: 0.8;
+	top: 141px;
+	left: 212px;
+	border-radius: 20px;
+	padding: 10px;
+	text-align: center;
+	-webkit-box-shadow: 3px 3px 5px #888;
+	box-shadow: 3px 3px 5px #888;
+}
