@@ -18,6 +18,7 @@
 * Demo12： 13 `opacity` 制作透明背景层
 * Demo13： 14 `rgba` + `hsla` CSS3 新加的两种颜色模式
 * Demo14： 15 `rgba` + `:hover` + `opacity `实例仿天猫商品展示效果
+* Demo15： 16 `linear-gradient` 线性渐变
 
 # 第一章—— `CSS3` 的简介和新特性
 
@@ -447,7 +448,7 @@ A: Alpha 透明度。 取值 0~1 之间
 H: Hue(色调)。0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：0-360
 S: Saturation(饱和度)。取值为：0.0% - 100.0%
 L: Lightness(亮度)。取值为：0.0% - 100.0%
-A: Alpha(透明度)。取值 0~1 之间。
+A: Alpha(透明度)。取值 0-1 之间。
 
 ### 对比
 
@@ -472,3 +473,69 @@ A: Alpha(透明度)。取值 0~1 之间。
 为使鼠标进入时，展示的图片变透明，使用 `:hover` 动态伪类选择器设置 `opacity` 属性。
 
 为使变化变得平滑一些，设置标签的 `transition` 属性，设置动画的时间。
+
+## 16. `CSS3` 线性渐变
+
+### 语法介绍
+
+	line-gradient([<point> || <angle>,]? <stop>, <stop> [, <stop>]*)
+
+* `<angle>`: 用角度值指定渐变的方向（或角度）
+
+	* `to left`: 设置渐变为从右到左。相当于: 270deg
+
+	* `to right`: 设置渐变为从左到右。相当于: 90deg
+
+	* `to top`: 设置渐变为从下到上。相当于: 0deg
+
+	* `to bottom`: 设置渐变为从上到下。相当于: 180deg
+
+* `<color-stop>`: 用于指定渐变的起止颜色
+
+	* `<color>`: 指定颜色。
+
+	* `<length>`: 用长度值指定起止色位置，不允许负值。
+
+	* `<percentage>`: 用百分比指定起止色位置。
+
+### 使用
+
+渐变最好放在 `background-image` 下，虽然理论上可以放在任何有颜色的地方，但浏览器支持并不好。
+
+最简单的例子，我们可以只传两种颜色：
+
+	background-image: linear-gradient(orange, black);
+
+默认是从上到下进行渐变。
+
+### 更改渐变的方向
+
+我们可以更改渐变的方向：
+
+	background-image: linear-gradient(to left, orange, black);
+
+使用角度（效果与上面的代码一样）：
+
+	background-image: linear-gradient(270deg, orange, black);
+
+### 控制渐变的位置
+
+	background-image: linear-gradient(to left, orange 50%, black 100%);
+
+### 增加渐变的颜色
+
+使用百分比的形式：
+
+	background-image: linear-gradient(to left, orange 30%, black 60%, red 100%);
+
+使用像素的形式：
+
+	background-image: linear-gradient(to left, orange 100px, black 160px, red 260px);
+
+### 增加前缀信息
+
+为使更多的浏览器支持，我们需要增加前缀：
+
+	background-image: linear-gradient(270deg, orange 100px, black 160px, red 260px);
+	background-image: -webkit-linear-gradient(270deg, orange 100px, black 160px, red 260px);
+	background-image: -o-linear-gradient(270deg, orange 100px, black 160px, red 260px);
