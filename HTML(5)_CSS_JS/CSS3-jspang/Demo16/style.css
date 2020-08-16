@@ -1,0 +1,23 @@
+.layer {
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+	border-radius: 50%;
+	margin: 10px;
+	float: left;
+}
+.circle {
+	/*background-image: radial-gradient(circle at center, yellow, blue);*/
+	/*background-image: radial-gradient(circle at right, yellow, blue);*/
+	/* background-image: radial-gradient(circle at top, yellow, blue); */
+	/*background-image: radial-gradient(circle at top left, yellow, blue);*/
+	background-image: radial-gradient(20px circle at center, yellow, blue);
+}
+.ellipse {
+	/*background-image: radial-gradient(ellipse at center, yellow, blue);*/
+	/*background-image: radial-gradient(ellipse at right, yellow, blue);*/
+	/*background-image: radial-gradient(ellipse at top, yellow, blue);*/
+	/*background-image: radial-gradient(ellipse at top left, yellow, blue);*/
+	/*background-image: radial-gradient(20px 40px ellipse at center, yellow, blue);*/
+	background-image: radial-gradient(20px 40px ellipse at center, yellow, blue, red);
+}

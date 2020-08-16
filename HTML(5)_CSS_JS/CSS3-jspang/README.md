@@ -19,6 +19,7 @@
 * Demo13： 14 `rgba` + `hsla` CSS3 新加的两种颜色模式
 * Demo14： 15 `rgba` + `:hover` + `opacity `实例仿天猫商品展示效果
 * Demo15： 16 `linear-gradient` 线性渐变
+* Demo16： 17 `radial-gradient` 径向渐变
 
 # 第一章—— `CSS3` 的简介和新特性
 
@@ -536,6 +537,74 @@ A: Alpha(透明度)。取值 0-1 之间。
 
 为使更多的浏览器支持，我们需要增加前缀：
 
+	background-image: linear-gradient(to left, orange 100px, black 160px, red 260px);
+	background-image: -webkit-linear-gradient(to left, orange 100px, black 160px, red 260px);
+	background-image: -o-linear-gradient(to left, orange 100px, black 160px, red 260px);
+
+**注意**：
+
+当使用数值来确定渐变角度时，会出现一些问题。
+
+**加了前缀的角度如果设置成正值的话，和标准语法解析是相反方向的(逆时针旋转)**！
+
+例如：
+
 	background-image: linear-gradient(270deg, orange 100px, black 160px, red 260px);
 	background-image: -webkit-linear-gradient(270deg, orange 100px, black 160px, red 260px);
 	background-image: -o-linear-gradient(270deg, orange 100px, black 160px, red 260px);
+
+与上面的效果不同，但按照标准，效果应该是一样的。
+
+## 17. `CSS3` 径向渐变
+
+径向渐变是按照圆或是椭圆进行渐变。
+
+### 语法介绍
+
+	radial-gradient([<bg-position> || <angel>,]?[<shape> || <size,>]? <color-stop>, <color-stop>[, >color-stop?]*);
+
+### 使用
+
+### 在中间的圆形渐变和椭圆形渐变
+
+默认渐变方向，圆形渐变：
+
+	background-image: radial-gradient(yellow, blue);
+
+也可以写成：
+
+	background-image: radial-gradient(circle at center, yellow, blue);
+
+椭圆形渐变：
+
+	background-image: radial-gradient(ellipse at center, yellow, blue);
+
+### 更改位置
+
+在右侧开始渐变：
+
+	background-image: radial-gradient(circle at right, yellow, blue);
+
+从头部开始渐变：
+
+	background-image: radial-gradient(circle at top, yellow, blue);
+
+从左上角开始渐变：
+
+	background-image: radial-gradient(circle at top left, yellow, blue);
+
+注意，这里的 `top` 和 `left` 是没有顺序的。
+
+### 控制渐变范围
+
+	background-image: radial-gradient(20px circle at center, yellow, blue);
+
+注意，这里的 `20px` 不能写成百分制，也不能应用在椭圆渐变上。
+
+在椭圆渐变上，应该使用两个值，分别控制 `x` 轴和 `y` 轴。
+
+	background-image: radial-gradient(20px 40px ellipse at center, yellow, blue);
+
+### 多种颜色渐变
+
+	background-image: radial-gradient(20px 40px ellipse at center, yellow, blue, red);
