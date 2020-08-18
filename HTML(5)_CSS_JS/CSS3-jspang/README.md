@@ -20,6 +20,7 @@
 * Demo14： 15 `rgba` + `:hover` + `opacity `实例仿天猫商品展示效果
 * Demo15： 16 `linear-gradient` 线性渐变
 * Demo16： 17 `radial-gradient` 径向渐变
+* Demo17： 18 `repeating-x-gradient` + 色标值 实现重复性渐变
 
 # 第一章—— `CSS3` 的简介和新特性
 
@@ -608,3 +609,19 @@ A: Alpha(透明度)。取值 0-1 之间。
 ### 多种颜色渐变
 
 	background-image: radial-gradient(20px 40px ellipse at center, yellow, blue, red);
+
+## 18. `CSS3` 重复性渐变
+
+注意：重复性渐变必须增加色标值。
+
+### 线性渐变
+
+在线性渐变的基础上添加色标值，然后增加前缀： `repeating`，表示重复。
+
+	background-image: repeating-linear-gradient(red 0px, green 40px, orange 80px);
+
+### 径向渐变
+
+同样的，在径向渐变的基础上添加色标值，然后也同样增加前缀： `repeating`，表示重复。
+
+	background-image: repeating-radial-gradient(red 0px, green 30px, orange 50px);
