@@ -21,6 +21,7 @@
 * Demo15： 16 `linear-gradient` 线性渐变
 * Demo16： 17 `radial-gradient` 径向渐变
 * Demo17： 18 `repeating-x-gradient` + 色标值 实现重复性渐变
+* Demo18： 19 `box-shadow` 增加盒子阴影效果
 
 # 第一章—— `CSS3` 的简介和新特性
 
@@ -625,3 +626,26 @@ A: Alpha(透明度)。取值 0-1 之间。
 同样的，在径向渐变的基础上添加色标值，然后也同样增加前缀： `repeating`，表示重复。
 
 	background-image: repeating-radial-gradient(red 0px, green 30px, orange 50px);
+
+## 19. `CSS3` 盒子阴影效果
+
+### 语法介绍
+
+	box-shadow: h-shadow v-shadow blur spread color inset;
+
+* `h-shadow`: 必需。水平阴影的位置，允许负值。
+
+* `v-shadow`: 必需。垂直阴影的位置，允许负值。
+* `blur`: 可选。模糊距离。
+* `spread`: 可选。阴影的尺寸。
+* `color`: 可选。阴影的颜色。
+* `inset`: 可选。将外部阴影(outset)改为内部。
+
+### 基础用法
+
+	box-shadow: 12px 12px 18px #aaa;
+
+增加前缀：
+
+	-webkit-box-shadow: 12px 12px 18px #aaa;
+	box-shadow: 12px 12px 18px #aaa;
