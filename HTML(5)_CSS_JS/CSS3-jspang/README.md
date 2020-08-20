@@ -22,6 +22,7 @@
 * Demo16： 17 `radial-gradient` 径向渐变
 * Demo17： 18 `repeating-x-gradient` + 色标值 实现重复性渐变
 * Demo18： 19 `box-shadow` 增加盒子阴影效果
+* Demo19： 20 `transition` 过渡效果 制作缓慢变化的方形
 
 # 第一章—— `CSS3` 的简介和新特性
 
@@ -634,7 +635,6 @@ A: Alpha(透明度)。取值 0-1 之间。
 	box-shadow: h-shadow v-shadow blur spread color inset;
 
 * `h-shadow`: 必需。水平阴影的位置，允许负值。
-
 * `v-shadow`: 必需。垂直阴影的位置，允许负值。
 * `blur`: 可选。模糊距离。
 * `spread`: 可选。阴影的尺寸。
@@ -649,3 +649,52 @@ A: Alpha(透明度)。取值 0-1 之间。
 
 	-webkit-box-shadow: 12px 12px 18px #aaa;
 	box-shadow: 12px 12px 18px #aaa;
+
+# 第四章 —— `CSS3` 过渡效果
+
+## 20. `CSS3` 制作缓慢变长的方形
+
+### 语法介绍
+
+`Transition` 复合属性
+
+* `transition-property`: 过渡属性(默认值为 all)
+* `transition-duration`: 过渡持续时间(默认值为0s)
+* `transition-timing-function`: 过渡函数(默认值为 `ease` 函数)
+* `transition-delay`: 过渡延迟时间(默认值为0s)
+
+### 实现鼠标进入，动画缓慢变化
+
+	.layer {
+		width: 150px;
+		height: 150px;
+		margin: 50px auto;
+		background-color: pink;
+		cursor: pointer;
+		transition-duration: 2s;
+		transition-property: all;
+		transition-delay: .2s;
+		transition-timing-function: ease;
+	}
+	.layer:hover {
+		width: 300px;
+		height: 200px;
+		background-color: blue;
+		border-radius: 50%;
+	}
+
+四个与过渡有关的属性可以写在一起，简写方法：
+
+	transition: all 2s .2s ease;
+
+## 21. `CSS3` 过渡的 `timing-function` 属性
+
+* `ease`: 慢 -> 快 -> 慢。
+* `linear`: 匀速。
+* `ease-in`: 慢 -> 快。
+* `ease-out`: 快 -> 慢。
+* `ease-in-out`: 慢 -> 快 -> 慢，与 `ease` 很相似，区别很小。
+* `step-start`: 直接从开始到结束，没有过渡效果。
+* `step-end`: 等待动画时间 `duration` 结束后，才开始直接变化到结束状态，没有过渡效果。
+
+如果精度要求很高，也可以使用 `bezier` 曲线。可以在 [cubic-bezier](https://cubic-bezier.com/) 上进行调试。
