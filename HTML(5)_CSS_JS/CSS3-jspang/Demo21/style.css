@@ -1,0 +1,33 @@
+.layer {
+	width: 260px;
+	height: 350px;
+	border: 1px solid #ccc;
+	margin: 50px auto;
+	/*font-family: 'Micosoft YaHei';*/
+	cursor: pointer;
+}
+.layer .m_img img {
+	width: 220px;
+	height: 220px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	transition: right .3s;
+}
+.m_title {
+	text-align: left;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 20px 10px 10px 10px;
+}
+.m_content {
+	color: #11ccaa;
+	padding: 0px 10px 10px 10px;
+}
+.m_img {
+	text-align: right;
+	position: relative;
+}
+.layer:hover img {
+	right: 15px;
+}

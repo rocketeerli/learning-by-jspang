@@ -23,6 +23,8 @@
 * Demo17： 18 `repeating-x-gradient` + 色标值 实现重复性渐变
 * Demo18： 19 `box-shadow` 增加盒子阴影效果
 * Demo19： 20 `transition` 过渡效果 制作缓慢变化的方形
+* Demo20： 22 实战——仿天猫专题过渡效果
+* Demo21： 23 实战——天猫类别过渡效果
 
 # 第一章—— `CSS3` 的简介和新特性
 
@@ -698,3 +700,19 @@ A: Alpha(透明度)。取值 0-1 之间。
 * `step-end`: 等待动画时间 `duration` 结束后，才开始直接变化到结束状态，没有过渡效果。
 
 如果精度要求很高，也可以使用 `bezier` 曲线。可以在 [cubic-bezier](https://cubic-bezier.com/) 上进行调试。
+
+## 22. 制作天猫首页的展示效果
+
+1. 基本的方法设置结构，包括字体和图像；同时设置 `cursor`、 `width`、 `height` 等。
+
+2. 使用 `::before` 增加背景层，设置 `z-index` 等。
+
+3. 增加 `transform` 缩放效果和 `transition` 简单的动画效果。
+
+## 23. 天猫类别过渡效果
+
+1. 设置网页的基本结构，并设置元素位置。
+
+2. 使用 `:hover` + `right` 进行移动。
+
+3. 增加 `transition` 过渡效果。
