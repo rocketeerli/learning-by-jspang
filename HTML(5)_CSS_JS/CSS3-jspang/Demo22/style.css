@@ -1,0 +1,18 @@
+.rect {
+	width: 100px;
+	height: 100px;
+	background-color: red;
+	position: fixed;
+	animation: circle 3s infinite;
+}
+@keyframes my_move {
+	from {top: 0; left: 20%;}
+	to {top: 0; left: 80%;}
+}
+@keyframes circle {
+	0% {top:0; left: 20%; background-color: red;}
+	25% {top: 0; left: 80%; background-color: blue;}
+	50% {top: 80%; left: 80%; background-color: green;}
+	70% {top: 80%; left: 20%; background-color: yellow;}
+	100% {top:0; left: 20%; background-color: red;}
+}

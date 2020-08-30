@@ -716,3 +716,44 @@ A: Alpha(透明度)。取值 0-1 之间。
 2. 使用 `:hover` + `right` 进行移动。
 
 3. 增加 `transition` 过渡效果。
+
+# 第五章 —— `CSS3` 的动画效果
+
+## 24. 动画中的关键帧 `@keyframes`
+
+### `from {} to {}`
+
+从左侧 20% 移动到左侧 80%。
+
+首先定义移动帧：
+
+	@keyframes my_move {
+		from {top: 0; left: 20%;}
+		to {top: 0; left: 80%;}
+	}
+
+然后将其加入到 `animation` 中：
+
+	animation: my_move 2s infinite;
+
+### `%` 用法
+
+增加正方形移动轨迹：
+
+	@keyframes circle {
+		0% {top:0; left: 20%}
+		25% {top: 0; left: 80%}
+		50% {top: 80%; left: 80%}
+		70% {top: 80%; left: 20%}
+		100% {top:0; left: 20%}
+	}
+
+增加背景颜色的改变：
+
+	@keyframes circle {
+		0% {top:0; left: 20%; background-color: red;}
+		25% {top: 0; left: 80%; background-color: blue;}
+		50% {top: 80%; left: 80%; background-color: green;}
+		70% {top: 80%; left: 20%; background-color: yellow;}
+		100% {top:0; left: 20%; background-color: red;}
+	}
