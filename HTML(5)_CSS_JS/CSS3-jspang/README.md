@@ -25,6 +25,9 @@
 * Demo19： 20 `transition` 过渡效果 制作缓慢变化的方形
 * Demo20： 22 实战——仿天猫专题过渡效果
 * Demo21： 23 实战——天猫类别过渡效果
+* Demo22： 24 动画中的关键帧 `@keyframes` 和 `animation`
+* Demo23： 26 实战 —— `animation` loading 效果
+* Demo24： 27 实战 —— `animation` 圆形加载效果
 
 # 第一章—— `CSS3` 的简介和新特性
 
@@ -756,4 +759,60 @@ A: Alpha(透明度)。取值 0-1 之间。
 		50% {top: 80%; left: 80%; background-color: green;}
 		70% {top: 80%; left: 20%; background-color: yellow;}
 		100% {top:0; left: 20%; background-color: red;}
+	}
+
+## 25. `animation` 复合属性
+
+一共六个复合属性：
+
+* `animation-name`: 指定动画的名字。
+* `animation-duration`: 动画的时间。
+* `animation-timing-function`： 指定动画效果，如 `linear` 匀速变化；`ease` 慢快慢。
+* `animation-delay`: 延迟的运行时间
+* `animation-iteration-count`: 执行的次数，`infinite` 一直运行。
+* `animation-direction`: `noraml` 正常运行；`alternate` 反方向运行。
+
+## 26. 实战 —— `animation` 做 loading 加载动画
+
+1. 构建基本的 HTML 结构
+
+2. 创建动画
+
+	@keyframes loading {
+		0%, 40%, 100% {transform: scale(0.4);}
+		20% {transform: scale(1);}
+	}
+
+3. 设置加速效果
+
+	.spinner > div:nth-child(2) {
+		animation-delay: -1.1s
+	}
+	.spinner > div:nth-child(3) {
+		animation-delay: -1.0s
+	}
+	.spinner > div:nth-child(4) {
+		animation-delay: -0.9s
+	}
+	.spinner > div:nth-child(5) {
+		animation-delay: -0.8s
+	}
+
+## 27. 实战 —— `animation` 做圆形加载动画
+
+1. 设置 HTML 基本结构
+
+2. 定义缩放动画
+
+	@keyframes circle {
+		0%, 100% {transform: scale(0.0);}
+		50% {transform: scale(1.0);}
+	}
+
+3. 加载并设置动画延时
+
+	animation: circle 2.0s infinite ease-in-out;
+
+	.spinner > div:nth-child(2) {
+		animation-delay: -1s;
 	}
