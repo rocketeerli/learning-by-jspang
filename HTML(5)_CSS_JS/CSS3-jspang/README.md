@@ -29,6 +29,7 @@
 * Demo23： 26 实战 —— `animation` loading 效果
 * Demo24： 27 实战 —— `animation` 圆形加载效果
 * Demo25： 28 `text-shadow` 制作发光字、立体字和苹果字体
+* Demo26： 29 `text-overflow` 设置字体超出范围的效果
 
 # 第一章—— `CSS3` 的简介和新特性
 
@@ -847,3 +848,37 @@ A: Alpha(透明度)。取值 0-1 之间。
 				 3px 3px rgba(197, 223, 248, 0.8),
 				 4px 4px rgba(197, 223, 248, 0.8),
 				 5px 5px rgba(197, 223, 248, 0.8);
+
+## 29. `text-overflow` 解决文字排版问题
+
+### 基本语法
+
+	text-overflow: clip | ellipsis | string;
+
+* `clip`
+
+没有什么效果，一般不使用。通常配合 `overflow` 使用。
+
+	text-overflow: clip;
+
+* `ellipsis`
+
+单独使用没有效果，配合 `overflow: hidden;` 和 `white-space: nowrap;` 进行使用
+
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+
+* `string`
+
+自定义字符串，浏览器支持不好，一般不使用。
+
+## 30. 新的字体单位 `rem`
+
+* px：像素
+
+* em：相对父级的大小
+
+* rem：相对于 html 页面
+
+不同的终端会有不同的格式和字体大小，可以设置相对大小。

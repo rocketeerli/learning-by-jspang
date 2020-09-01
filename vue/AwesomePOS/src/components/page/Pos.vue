@@ -283,27 +283,27 @@ export default {
         }
     },
     created() {
-        // axios.get('https://www.easy-mock.com/mock/5b8b30dbf032f03c5e71de7f/kuaican/oftenGoods')
-        //      .then(response=>{
-        //          console.log(response);
-        //          this.hotGoods = response.data;
-        //      })
-        //      .catch(error=>{
-        //          console.log(error);
-        //          alert('网络错误，不能访问！');
-        //      });
-        // axios.get('https://www.easy-mock.com/mock/5b8b30dbf032f03c5e71de7f/kuaican/typeGoods')
-        //      .then(response=>{
-        //          console.log(response);
-        //          this.type0Goods = response.data[0];
-        //          this.type1Goods = response.data[1];
-        //          this.type2Goods = response.data[2];
-        //          this.type3Goods = response.data[3];
-        //      })
-        //      .catch(error=>{
-        //          console.log(error);
-        //          alert('网络错误，不能访问！');
-        //      })
+        axios.get('https://www.easy-mock.com/mock/5b8b30dbf032f03c5e71de7f/kuaican/oftenGoods')
+             .then(response=>{
+                 console.log(response);
+                 this.hotGoods = response.data;
+             })
+             .catch(error=>{
+                 console.log(error);
+                 alert('网络错误，不能访问！');
+             });
+        axios.get('https://www.easy-mock.com/mock/5b8b30dbf032f03c5e71de7f/kuaican/typeGoods')
+             .then(response=>{
+                 console.log(response);
+                 this.type0Goods = response.data[0];
+                 this.type1Goods = response.data[1];
+                 this.type2Goods = response.data[2];
+                 this.type3Goods = response.data[3];
+             })
+             .catch(error=>{
+                 console.log(error);
+                 alert('网络错误，不能访问！');
+             })
     },
     mounted: function(){
         // 所有虚拟 DOM 都加载后
