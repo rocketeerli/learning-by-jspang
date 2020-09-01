@@ -28,6 +28,7 @@
 * Demo22： 24 动画中的关键帧 `@keyframes` 和 `animation`
 * Demo23： 26 实战 —— `animation` loading 效果
 * Demo24： 27 实战 —— `animation` 圆形加载效果
+* Demo25： 28 `text-shadow` 制作发光字、立体字和苹果字体
 
 # 第一章—— `CSS3` 的简介和新特性
 
@@ -816,3 +817,33 @@ A: Alpha(透明度)。取值 0-1 之间。
 	.spinner > div:nth-child(2) {
 		animation-delay: -1s;
 	}
+
+# 第六章 —— `CSS3` 的字体效果
+
+## 28. 制作发光字、立体字和苹果字体
+
+### 发光效果
+
+利用 `text-shadow` 设置 x、y 轴偏移为 0，设置模糊范围和颜色值。
+
+	text-shadow: 0px 0px 20px yellow;
+
+正常的阴影效果：
+
+	text-shadow: 2px 2px 3px yellow;
+
+### 苹果字体
+
+使用 `text-shadow` 设置 x 轴不偏移，y 轴向下偏移，设置颜色。
+
+	text-shadow: 0px 1px 1px #fff;
+
+### 3D 字体效果
+
+设置阴影，然后设置偏移。
+
+	text-shadow: 1px 1px rgba(197, 223, 248, 0.8),
+				 2px 2px rgba(197, 223, 248, 0.8),
+				 3px 3px rgba(197, 223, 248, 0.8),
+				 4px 4px rgba(197, 223, 248, 0.8),
+				 5px 5px rgba(197, 223, 248, 0.8);
